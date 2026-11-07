@@ -3,84 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100e">
+  <meta name="description" content="Another World — rare vintage and streetwear pieces, carefully selected.">
   <title>ANOTHER WORLD | Vintage Streetwear</title>
   <style>
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: #11100e;
       color: #eee4d3;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    a { color: inherit; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px clamp(16px, 5vw, 60px);
+      background: rgba(24, 21, 18, .96);
+      border-bottom: 1px solid #554633;
+      backdrop-filter: blur(10px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-align: left; }
+    .brand-logo {
+      width: 52px; height: 52px; flex: 0 0 52px;
+      border-radius: 50%; object-fit: cover;
+      border: 1px solid #b69a70;
+      background: #080808;
+    }
+    .brand-name { margin: 0; font-size: 16px; letter-spacing: 3px; }
+    .brand-tag { margin: 5px 0 0; color: #cdb99a; font-size: 9px; letter-spacing: 2px; }
+    .nav-link {
+      text-decoration: none; color: #d9c6a8; font-size: 12px;
+      letter-spacing: 1px; border: 1px solid #756044; padding: 10px 13px;
+    }
+    .hero {
+      min-height: 570px;
+      display: grid; place-items: center;
+      padding: 70px 20px;
       text-align: center;
+      background:
+        linear-gradient(rgba(12, 11, 10, .72), rgba(12, 11, 10, .86)),
+        url("photo-2.jpg") center 35% / cover no-repeat;
+      border-bottom: 1px solid #554633;
     }
-    header {
-      padding: 22px;
-      background: #201b16;
-      border-bottom: 1px solid #8d7656;
+    .hero-content { max-width: 760px; }
+    .eyebrow { color: #cdb99a; font-size: 11px; letter-spacing: 4px; }
+    .hero h1 {
+      margin: 20px 0 14px;
+      font-family: Georgia, serif;
+      font-size: clamp(42px, 9vw, 82px);
+      line-height: .98;
+      letter-spacing: 2px;
     }
-    header h2 { letter-spacing: 4px; margin: 0; }
-    header p { color: #cdb99a; font-size: 11px; }
-    .welcome {
-      padding: 90px 20px;
-      background: #201b16;
+    .hero-copy { color: #d2c2aa; line-height: 1.9; font-size: 15px; }
+    .button {
+      display: inline-block; margin-top: 22px; padding: 14px 23px;
+      background: #cdb99a; color: #17130f; text-decoration: none;
+      font-size: 11px; font-weight: bold; letter-spacing: 1.5px;
     }
-    .welcome h1 {
-      font-size: clamp(38px, 8vw, 65px);
-      margin: 15px 0;
+    .section { width: min(1100px, 100%); margin: auto; padding: 68px 20px; }
+    .section-heading { text-align: center; margin: 0 0 12px; letter-spacing: 3px; font-family: Georgia, serif; }
+    .section-intro { text-align: center; color: #bbaa91; font-size: 13px; line-height: 1.8; margin: 0 auto 30px; max-width: 580px; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center;
     }
-    .welcome p { line-height: 1.8; color: #cdb99a; }
-    .btn {
-      display: inline-block;
-      padding: 14px 25px;
-      margin-top: 20px;
-      background: #cdb99a;
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
+    .about-grid img {
+      width: 100%; display: block; max-height: 570px; object-fit: cover;
+      border: 1px solid #594a36;
     }
-    .photos, .products { padding: 45px 15px; }
-    .photos img {
-      width: 90%;
-      max-width: 500px;
-      margin: 12px;
+    .about-note { padding: 20px; text-align: left; }
+    .about-note h3 { font-family: Georgia, serif; font-size: 28px; line-height: 1.2; }
+    .about-note p { color: #cdb99a; line-height: 1.9; font-size: 14px; }
+    .products { border-top: 1px solid #3c3226; background: #171512; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .product-slot {
+      min-height: 245px; padding: 18px; border: 1px dashed #786448;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; background: #1e1a15;
     }
-    .product {
-      background: #201b16;
-      padding: 25px;
-      margin: 15px auto;
-      max-width: 350px;
+    .plus { font-size: 34px; color: #cdb99a; font-weight: 200; }
+    .product-slot h3 { margin: 12px 0 7px; font-family: Georgia, serif; font-size: 17px; }
+    .product-slot p { margin: 0; color: #a99a83; font-size: 12px; line-height: 1.7; }
+    .contact { text-align: center; background: #211c16; border-top: 1px solid #554633; }
+    .contact p { color: #cdb99a; line-height: 1.8; }
+    footer { padding: 25px 15px; text-align: center; color: #a9987d; font-size: 11px; letter-spacing: 1px; }
+    @media (max-width: 700px) {
+      .site-header { padding: 10px 13px; }
+      .brand-logo { width: 44px; height: 44px; flex-basis: 44px; }
+      .brand-name { font-size: 13px; letter-spacing: 2px; }
+      .brand-tag { font-size: 8px; letter-spacing: 1px; }
+      .nav-link { padding: 9px 10px; font-size: 10px; }
+      .hero { min-height: 520px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-note { text-align: center; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .product-slot { min-height: 190px; padding: 12px; }
     }
-    footer { padding: 25px; color: #cdb99a; }
+    @media (max-width: 380px) {
+      .brand { gap: 8px; }
+      .brand-name { font-size: 11px; }
+      .nav-link { font-size: 9px; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h2>ANOTHER WORLD</h2>
-  <p>VINTAGE STREETWEAR</p>
-</header>
+  <header class="site-header">
+    <div class="brand">
+      <img class="brand-logo" src="logo.jpg" alt="Another World logo">
+      <div>
+        <h2 class="brand-name">ANOTHER WORLD</h2>
+        <p class="brand-tag">VINTAGE STREETWEAR</p>
+      </div>
+    </div>
+    <a class="nav-link" href="#products">COLLECTION</a>
+  </header>
 
-<section class="welcome">
-  <h1>WELCOME TO<br>ANOTHER WORLD</h1>
-  <p>Not just clothes. A different world.</p>
-  <p>Discover unique vintage and streetwear pieces.</p>
-  <a href="#products" class="btn">EXPLORE COLLECTION</a>
-</section>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">RARE PIECES • VINTAGE • STREETWEAR</p>
+        <h1>WELCOME TO<br>ANOTHER WORLD</h1>
+        <p class="hero-copy">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
+        <a class="button" href="#products">EXPLORE COLLECTION</a>
+      </div>
+    </section>
 
-<section class="photos">
-  <h2>OUR WORLD</h2>
-  <!-- نضيف صورك الشخصية هنا -->
-</section>
+    <section class="section" id="about">
+      <h2 class="section-heading">OUR WORLD</h2>
+      <p class="section-intro">Different pieces. Same world. A carefully selected collection for people who like their own style.</p>
+      <div class="about-grid">
+        <img src="photo-1.jpg" alt="Another World streetwear editorial portrait">
+        <div class="about-note">
+          <p class="eyebrow">THE ANOTHER WORLD IDENTITY</p>
+          <h3>NOT MADE<br>TO FIT IN.</h3>
+          <p>We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p>
+        </div>
+        <div class="about-note">
+          <p class="eyebrow">A DIFFERENT POINT OF VIEW</p>
+          <h3>FIND YOUR<br>OWN PIECE.</h3>
+          <p>Explore the collection and contact us directly when you find something you like.</p>
+        </div>
+        <img src="photo-2.jpg" alt="Another World streetwear outfit">
+      </div>
+    </section>
 
-<section class="products" id="products">
-  <h2>OUR COLLECTION</h2>
-  <!-- نضيف الملابس والأسعار هنا -->
-</section>
+    <section class="products" id="products">
+      <div class="section">
+        <h2 class="section-heading">OUR COLLECTION</h2>
+        <p class="section-intro">New pieces will appear here. Each product space is ready for its photo, name and price.</p>
+        <div class="product-grid">
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  ANOTHER WORLD © 2026
-</footer>
+    <section class="section contact" id="contact">
+      <h2 class="section-heading">LET'S TALK</h2>
+      <p>Found a piece you like? Contact us on WhatsApp.</p>
+      <!-- Replace 213XXXXXXXXX with your WhatsApp number, including country code, without + or spaces. -->
+      <a class="button" href="https://wa.me/213XXXXXXXXX">CONTACT ON WHATSAPP</a>
+      <p><a href="https://www.instagram.com/another_w00rld/" target="_blank" rel="noopener">FOLLOW US ON INSTAGRAM</a></p>
+    </section>
+  </main>
+
+  <footer>ANOTHER WORLD © 2026 — VINTAGE STREETWEAR</footer>
 
 </body>
 </html>
-
