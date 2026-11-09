@@ -1,185 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#11100e">
-  <meta name="description" content="Another World — rare vintage and streetwear pieces, carefully selected.">
-  <title>ANOTHER WORLD | Vintage Streetwear</title>
-  <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: #11100e;
-      color: #eee4d3;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    a { color: inherit; }
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px clamp(16px, 5vw, 60px);
-      background: rgba(24, 21, 18, .96);
-      border-bottom: 1px solid #554633;
-      backdrop-filter: blur(10px);
-    }
-    .brand { display: flex; align-items: center; gap: 12px; text-align: left; }
-    .brand-logo {
-      width: 52px; height: 52px; flex: 0 0 52px;
-      border-radius: 50%; object-fit: cover;
-      border: 1px solid #b69a70;
-      background: #080808;
-    }
-    .brand-name { margin: 0; font-size: 16px; letter-spacing: 3px; }
-    .brand-tag { margin: 5px 0 0; color: #cdb99a; font-size: 9px; letter-spacing: 2px; }
-    .nav-link {
-      text-decoration: none; color: #d9c6a8; font-size: 12px;
-      letter-spacing: 1px; border: 1px solid #756044; padding: 10px 13px;
-    }
-    .hero {
-      min-height: 570px;
-      display: grid; place-items: center;
-      padding: 70px 20px;
-      text-align: center;
-      background:
-        linear-gradient(rgba(12, 11, 10, .72), rgba(12, 11, 10, .86)),
-        url("photo-2.jpg") center 35% / cover no-repeat;
-      border-bottom: 1px solid #554633;
-    }
-    .hero-content { max-width: 760px; }
-    .eyebrow { color: #cdb99a; font-size: 11px; letter-spacing: 4px; }
-    .hero h1 {
-      margin: 20px 0 14px;
-      font-family: Georgia, serif;
-      font-size: clamp(42px, 9vw, 82px);
-      line-height: .98;
-      letter-spacing: 2px;
-    }
-    .hero-copy { color: #d2c2aa; line-height: 1.9; font-size: 15px; }
-    .button {
-      display: inline-block; margin-top: 22px; padding: 14px 23px;
-      background: #cdb99a; color: #17130f; text-decoration: none;
-      font-size: 11px; font-weight: bold; letter-spacing: 1.5px;
-    }
-    .section { width: min(1100px, 100%); margin: auto; padding: 68px 20px; }
-    .section-heading { text-align: center; margin: 0 0 12px; letter-spacing: 3px; font-family: Georgia, serif; }
-    .section-intro { text-align: center; color: #bbaa91; font-size: 13px; line-height: 1.8; margin: 0 auto 30px; max-width: 580px; }
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center;
-    }
-    .about-grid img {
-      width: 100%; display: block; max-height: 570px; object-fit: cover;
-      border: 1px solid #594a36;
-    }
-    .about-note { padding: 20px; text-align: left; }
-    .about-note h3 { font-family: Georgia, serif; font-size: 28px; line-height: 1.2; }
-    .about-note p { color: #cdb99a; line-height: 1.9; font-size: 14px; }
-    .products { border-top: 1px solid #3c3226; background: #171512; }
-    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .product-slot {
-      min-height: 245px; padding: 18px; border: 1px dashed #786448;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; background: #1e1a15;
-    }
-    .plus { font-size: 34px; color: #cdb99a; font-weight: 200; }
-    .product-slot h3 { margin: 12px 0 7px; font-family: Georgia, serif; font-size: 17px; }
-    .product-slot p { margin: 0; color: #a99a83; font-size: 12px; line-height: 1.7; }
-    .contact { text-align: center; background: #211c16; border-top: 1px solid #554633; }
-    .contact p { color: #cdb99a; line-height: 1.8; }
-    footer { padding: 25px 15px; text-align: center; color: #a9987d; font-size: 11px; letter-spacing: 1px; }
-    @media (max-width: 700px) {
-      .site-header { padding: 10px 13px; }
-      .brand-logo { width: 44px; height: 44px; flex-basis: 44px; }
-      .brand-name { font-size: 13px; letter-spacing: 2px; }
-      .brand-tag { font-size: 8px; letter-spacing: 1px; }
-      .nav-link { padding: 9px 10px; font-size: 10px; }
-      .hero { min-height: 520px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-note { text-align: center; }
-      .product-grid { grid-template-columns: 1fr 1fr; }
-      .product-slot { min-height: 190px; padding: 12px; }
-    }
-    @media (max-width: 380px) {
-      .brand { gap: 8px; }
-      .brand-name { font-size: 11px; }
-      .nav-link { font-size: 9px; }
-      .product-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11100e">
+<meta name="description" content="Another World — rare vintage and streetwear pieces.">
+<title>ANOTHER WORLD | Vintage Streetwear</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:#11100e;color:#eee4d3;
+ font-family:Arial,Helvetica,sans-serif;
+}
+a{color:inherit}
+.site-header{
+ position:sticky;top:0;z-index:10;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;padding:12px clamp(12px,4vw,50px);
+ background:rgba(24,21,18,.97);
+ border-bottom:1px solid #554633;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{
+ width:48px;height:48px;border-radius:50%;
+ object-fit:cover;border:1px solid #b69a70;
+}
+.brand-name{margin:0;font-size:14px;letter-spacing:2px}
+.brand-tag{margin:5px 0 0;color:#cdb99a;font-size:9px;letter-spacing:2px}
+.header-actions{display:flex;align-items:center;gap:9px}
+.nav-link,.language-btn{
+ text-decoration:none;color:#d9c6a8;font-size:11px;
+ letter-spacing:1px;border:1px solid #756044;
+ padding:10px 12px;background:transparent;cursor:pointer;
+}
+.hero{
+ min-height:570px;display:grid;place-items:center;
+ padding:70px 20px;text-align:center;
+ background:linear-gradient(rgba(12,11,10,.72),rgba(12,11,10,.86)),
+ url("photo-2.jpg") center 35%/cover no-repeat;
+ border-bottom:1px solid #554633;
+}
+.hero-content{max-width:760px}
+.eyebrow{color:#cdb99a;font-size:11px;letter-spacing:4px}
+.hero h1{
+ margin:20px 0 14px;font-family:Georgia,serif;
+ font-size:clamp(42px,9vw,82px);line-height:.98;
+}
+.hero-copy{color:#d2c2aa;line-height:1.9;font-size:15px}
+.button{
+ display:inline-block;margin-top:22px;padding:14px 23px;
+ background:#cdb99a;color:#17130f;text-decoration:none;
+ font-size:11px;font-weight:bold;letter-spacing:1.5px;
+}
+.section{width:min(1100px,100%);margin:auto;padding:68px 20px}
+.section-heading{
+ text-align:center;margin:0 0 12px;letter-spacing:3px;
+ font-family:Georgia,serif;
+}
+.section-intro{
+ text-align:center;color:#bbaa91;font-size:13px;
+ line-height:1.8;margin:0 auto 30px;max-width:580px;
+}
+.about-grid{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:18px;align-items:center;
+}
+.about-grid img{
+ width:100%;display:block;max-height:570px;
+ object-fit:cover;border:1px solid #594a36;
+}
+.about-note{padding:20px;text-align:left}
+.about-note h3{font-family:Georgia,serif;font-size:28px;line-height:1.2}
+.about-note p{color:#cdb99a;line-height:1.9;font-size:14px}
+.products{border-top:1px solid #3c3226;background:#171512}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product-slot{
+ min-height:245px;padding:18px;border:1px dashed #786448;
+ display:flex;flex-direction:column;justify-content:center;
+ align-items:center;text-align:center;background:#1e1a15;
+}
+.plus{font-size:34px;color:#cdb99a}
+.product-slot h3{font-family:Georgia,serif;font-size:17px}
+.product-slot p{color:#a99a83;font-size:12px;line-height:1.7}
+
+/* GUESS THE BRAND */
+.game-section{
+ border-top:1px solid #554633;
+ background:#171512;
+}
+.game-box{
+ max-width:650px;margin:auto;padding:30px 20px;
+ border:1px solid #756044;text-align:center;
+ background:#1e1a15;
+}
+.game-title{
+ font-family:Georgia,serif;font-size:clamp(30px,6vw,45px);
+ letter-spacing:2px;margin:10px 0;
+}
+.game-discount{
+ color:#cdb99a;font-size:23px;
+ letter-spacing:3px;margin:15px 0;
+}
+.game-description{
+ color:#bbaa91;font-size:13px;line-height:1.8;
+}
+.brand-options{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:12px;margin:25px 0;
+}
+.brand-option{
+ padding:17px 8px;border:1px solid #756044;
+ color:#eee4d3;font-weight:bold;letter-spacing:2px;
+ background:#171512;
+}
+.coming-soon{
+ display:block;background:#cdb99a;color:#17130f;
+ padding:16px;margin-top:20px;
+ font-family:Georgia,serif;font-size:22px;
+ font-weight:bold;letter-spacing:3px;
+}
+.contact{
+ text-align:center;background:#211c16;
+ border-top:1px solid #554633;
+}
+.contact p{color:#cdb99a;line-height:1.8}
+footer{
+ padding:25px 15px;text-align:center;
+ color:#a9987d;font-size:11px;letter-spacing:1px;
+}
+
+/* Arabic direction */
+body[dir="rtl"]{font-family:Arial,sans-serif}
+body[dir="rtl"] .about-note{text-align:right}
+body[dir="rtl"] .eyebrow{letter-spacing:1px}
+body[dir="rtl"] .game-title{letter-spacing:1px}
+
+@media(max-width:700px){
+ .site-header{padding:10px}
+ .brand-logo{width:40px;height:40px}
+ .brand-name{font-size:11px;letter-spacing:1px}
+ .brand-tag{font-size:7px;letter-spacing:1px}
+ .nav-link,.language-btn{padding:9px 8px;font-size:9px}
+ .hero{min-height:520px}
+ .about-grid{grid-template-columns:1fr}
+ .about-note{text-align:center}
+ .product-grid{grid-template-columns:1fr 1fr}
+ .product-slot{min-height:190px;padding:12px}
+}
+@media(max-width:380px){
+ .brand{gap:6px}
+ .brand-name{font-size:10px}
+ .header-actions{gap:5px}
+ .product-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
 
-  <header class="site-header">
-    <div class="brand">
-      <img class="brand-logo" src="logo.jpg" alt="Another World logo">
-      <div>
-        <h2 class="brand-name">ANOTHER WORLD</h2>
-        <p class="brand-tag">VINTAGE STREETWEAR</p>
-      </div>
-    </div>
-    <a class="nav-link" href="#products">COLLECTION</a>
-  </header>
+<header class="site-header">
+ <div class="brand">
+  <img class="brand-logo" src="logo.jpg" alt="Another World logo">
+  <div>
+   <h2 class="brand-name">ANOTHER WORLD</h2>
+   <p class="brand-tag">VINTAGE STREETWEAR</p>
+  </div>
+ </div>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">RARE PIECES • VINTAGE • STREETWEAR</p>
-        <h1>WELCOME TO<br>ANOTHER WORLD</h1>
-        <p class="hero-copy">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
-        <a class="button" href="#products">EXPLORE COLLECTION</a>
-      </div>
-    </section>
+ <div class="header-actions">
+  <a class="nav-link" href="#products" data-en="COLLECTION" data-ar="المجموعة">COLLECTION</a>
+  <button class="language-btn" id="languageBtn" type="button">AR العربية</button>
+ </div>
+</header>
 
-    <section class="section" id="about">
-      <h2 class="section-heading">OUR WORLD</h2>
-      <p class="section-intro">Different pieces. Same world. A carefully selected collection for people who like their own style.</p>
-      <div class="about-grid">
-        <img src="photo-1.jpg" alt="Another World streetwear editorial portrait">
-        <div class="about-note">
-          <p class="eyebrow">THE ANOTHER WORLD IDENTITY</p>
-          <h3>NOT MADE<br>TO FIT IN.</h3>
-          <p>We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p>
-        </div>
-        <div class="about-note">
-          <p class="eyebrow">A DIFFERENT POINT OF VIEW</p>
-          <h3>FIND YOUR<br>OWN PIECE.</h3>
-          <p>Explore the collection and contact us directly when you find something you like.</p>
-        </div>
-        <img src="photo-2.jpg" alt="Another World streetwear outfit">
-      </div>
-    </section>
+<main>
 
-    <section class="products" id="products">
-      <div class="section">
-        <h2 class="section-heading">OUR COLLECTION</h2>
-        <p class="section-intro">New pieces will appear here. Each product space is ready for its photo, name and price.</p>
-        <div class="product-grid">
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-          <article class="product-slot"><span class="plus">+</span><h3>YOUR NEXT PIECE</h3><p>Product photo coming soon<br>Price: to be added</p></article>
-        </div>
-      </div>
-    </section>
+<section class="hero">
+ <div class="hero-content">
+  <p class="eyebrow" data-en="RARE PIECES • VINTAGE • STREETWEAR" data-ar="قطع نادرة • ملابس فينتيج • ستريت وير">RARE PIECES • VINTAGE • STREETWEAR</p>
+  <h1 data-en="WELCOME TO<br>ANOTHER WORLD" data-ar="مرحباً بك في<br>عالم آخر">WELCOME TO<br>ANOTHER WORLD</h1>
+  <p class="hero-copy" data-en="Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces." data-ar="ليست مجرد ملابس، بل عالم مختلف.<br>اكتشف قطعاً مميزة من ملابس الفينتيج والستريت وير.">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
+  <a class="button" href="#products" data-en="EXPLORE COLLECTION" data-ar="اكتشف المجموعة">EXPLORE COLLECTION</a>
+ </div>
+</section>
 
-    <section class="section contact" id="contact">
-      <h2 class="section-heading">LET'S TALK</h2>
-      <p>Found a piece you like? Contact us on WhatsApp.</p>
-      <!-- Replace 213XXXXXXXXX with your WhatsApp number, including country code, without + or spaces. -->
-      <a class="button" href="https://wa.me/213791237069">CONTACT ON WHATSAPP</a>
-      <p><a href="https://www.instagram.com/another_w00rld/" target="_blank" rel="noopener">FOLLOW US ON INSTAGRAM</a></p>
-    </section>
-  </main>
+<section class="section" id="about">
+ <h2 class="section-heading" data-en="OUR WORLD" data-ar="عالمنا">OUR WORLD</h2>
+ <p class="section-intro" data-en="Different pieces. Same world. A carefully selected collection for people who like their own style." data-ar="قطع مختلفة، وعالم واحد. مجموعة مختارة بعناية للأشخاص الذين يحبون أسلوبهم الخاص.">Different pieces. Same world. A carefully selected collection for people who like their own style.</p>
 
-  <footer>ANOTHER WORLD © 2026 — VINTAGE STREETWEAR</footer>
+ <div class="about-grid">
+  <img src="photo-1.jpg" alt="Another World streetwear portrait">
+  <div class="about-note">
+   <p class="eyebrow" data-en="THE ANOTHER WORLD IDENTITY" data-ar="هوية عالم آخر">THE ANOTHER WORLD IDENTITY</p>
+   <h3 data-en="NOT MADE<br>TO FIT IN." data-ar="لسنا هنا<br>لنشبه الآخرين.">NOT MADE<br>TO FIT IN.</h3>
+   <p data-en="We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition." data-ar="نبحث عن قطع مميزة من ملابس الفينتيج والستريت وير. نختار كل قطعة بعناية حسب طابعها وأسلوبها وحالتها.">We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p>
+  </div>
+  <div class="about-note">
+   <p class="eyebrow" data-en="A DIFFERENT POINT OF VIEW" data-ar="نظرة مختلفة">A DIFFERENT POINT OF VIEW</p>
+   <h3 data-en="FIND YOUR<br>OWN PIECE." data-ar="اعثر على<br>قطعتك الخاصة.">FIND YOUR<br>OWN PIECE.</h3>
+   <p data-en="Explore the collection and contact us directly when you find something you like." data-ar="اكتشف مجموعتنا وتواصل معنا مباشرة عندما تجد قطعة تعجبك.">Explore the collection and contact us directly when you find something you like.</p>
+  </div>
+  <img src="photo-2.jpg" alt="Another World streetwear outfit">
+ </div>
+</section>
+
+<!-- GAME COMING SOON -->
+<section class="game-section" id="game">
+ <div class="section">
+  <div class="game-box">
+   <p class="eyebrow">ANOTHER WORLD EXCLUSIVE</p>
+   <h2 class="game-title">GUESS THE BRAND</h2>
+   <h3 class="game-discount" data-en="WIN DISCOUNT" data-ar="اربح خصماً">WIN DISCOUNT</h3>
+   <p class="game-description" data-en="Choose the correct brand and get rewarded." data-ar="اختر العلامة التجارية الصحيحة واحصل على مكافأتك.">Choose the correct brand and get rewarded.</p>
+
+   <div class="brand-options">
+    <div class="brand-option">NIKE</div>
+    <div class="brand-option">ADIDAS</div>
+    <div class="brand-option">PUMA</div>
+    <div class="brand-option">REEBOK</div>
+    <div class="brand-option">CHAMPION</div>
+    <div class="brand-option">FILA</div>
+   </div>
+
+   <div class="coming-soon" data-en="COMING SOON" data-ar="قريباً">COMING SOON</div>
+   <p class="game-description" data-en="STAY TUNED FOR SOMETHING SPECIAL." data-ar="ترقبوا شيئاً مميزاً.">STAY TUNED FOR SOMETHING SPECIAL.</p>
+  </div>
+ </div>
+</section>
+
+<section class="products" id="products">
+ <div class="section">
+  <h2 class="section-heading" data-en="OUR COLLECTION" data-ar="مجموعتنا">OUR COLLECTION</h2>
+  <p class="section-intro" data-en="New pieces will appear here. Each product space is ready for its photo, name and price." data-ar="ستظهر القطع الجديدة هنا. كل مكان جاهز لصورة المنتج واسمه وسعره.">New pieces will appear here. Each product space is ready for its photo, name and price.</p>
+
+  <div class="product-grid">
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section contact" id="contact">
+ <h2 class="section-heading" data-en="LET'S TALK" data-ar="لنتحدث">LET'S TALK</h2>
+ <p data-en="Found a piece you like? Contact us on WhatsApp." data-ar="وجدت قطعة أعجبتك؟ تواصل معنا عبر واتساب.">Found a piece you like? Contact us on WhatsApp.</p>
+ <a class="button" href="https://wa.me/213791237069" data-en="CONTACT ON WHATSAPP" data-ar="تواصل عبر واتساب">CONTACT ON WHATSAPP</a>
+ <p><a href="https://www.instagram.com/another_w00rld/" target="_blank" rel="noopener" data-en="FOLLOW US ON INSTAGRAM" data-ar="تابعنا على إنستغرام">FOLLOW US ON INSTAGRAM</a></p>
+</section>
+
+</main>
+
+<footer data-en="ANOTHER WORLD © 2026 — VINTAGE STREETWEAR" data-ar="عالم آخر © 2026 — ملابس فينتيج">ANOTHER WORLD © 2026 — VINTAGE STREETWEAR</footer>
+
+<script>
+const languageBtn = document.getElementById("languageBtn");
+let currentLanguage = "en";
+
+languageBtn.addEventListener("click", function() {
+ currentLanguage = currentLanguage === "en" ? "ar" : "en";
+
+ document.documentElement.lang = currentLanguage;
+ document.body.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+
+ document.querySelectorAll("[data-en][data-ar]").forEach(function(element) {
+  element.innerHTML = element.dataset[currentLanguage];
+ });
+
+ languageBtn.textContent = currentLanguage === "en" ? "AR العربية" : "EN English";
+});
+</script>
 
 </body>
 </html>
+
