@@ -6,117 +6,345 @@
 <meta name="theme-color" content="#11100e">
 <meta name="description" content="Another World — rare vintage and streetwear pieces.">
 <title>ANOTHER WORLD | Vintage Streetwear</title>
+
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-:root{--bg:#11100e;--header:#181512;--section:#171512;--card:#1e1a15;--contact:#211c16;--text:#eee4d3;--muted:#cdb99a;--border:#554633;--button:#cdb99a;--button-text:#17130f}
-body.light-mode{--bg:#f3ede2;--header:#e9dfd0;--section:#eee6d9;--card:#e5dac8;--contact:#e8ddcd;--text:#292116;--muted:#66543d;--border:#b6a080;--button:#33291d;--button-text:#f5eddf}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;transition:background .3s,color .3s}a{color:inherit}
-.site-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px clamp(12px,4vw,50px);background:var(--header);border-bottom:1px solid var(--border)}
-.brand{display:flex;align-items:center;gap:10px}.brand-logo{width:48px;height:48px;border-radius:50%;object-fit:cover;border:1px solid #b69a70}
-.brand-name{margin:0;font-size:14px;letter-spacing:2px}.brand-tag{margin:5px 0 0;color:var(--muted);font-size:9px;letter-spacing:2px}
-.header-actions{display:flex;align-items:center;gap:8px}.nav-link,.language-btn,.theme-btn{color:var(--text);font-size:11px;letter-spacing:1px;border:1px solid var(--border);padding:10px 12px;background:transparent;cursor:pointer;text-decoration:none}
-.hero{min-height:570px;display:grid;place-items:center;padding:70px 20px;text-align:center;background:linear-gradient(rgba(12,11,10,.72),rgba(12,11,10,.86)),url("photo-2.jpg") center 35%/cover no-repeat;border-bottom:1px solid var(--border)}
-body.light-mode .hero{background:linear-gradient(rgba(243,237,226,.72),rgba(243,237,226,.85)),url("photo-2.jpg") center 35%/cover no-repeat}
-.hero-content{max-width:760px}.eyebrow{color:var(--muted);font-size:11px;letter-spacing:4px}.hero h1{margin:20px 0 14px;font-family:Georgia,serif;font-size:clamp(42px,9vw,82px);line-height:.98}.hero-copy{color:var(--muted);line-height:1.9;font-size:15px}
-.button{display:inline-block;margin-top:22px;padding:14px 23px;background:var(--button);color:var(--button-text);text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.5px}
-.section{width:min(1100px,100%);margin:auto;padding:68px 20px}.section-heading{text-align:center;margin:0 0 12px;letter-spacing:3px;font-family:Georgia,serif}
-.section-intro{text-align:center;color:var(--muted);font-size:13px;line-height:1.8;margin:0 auto 30px;max-width:580px}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}.about-grid img{width:100%;display:block;max-height:570px;object-fit:cover;border:1px solid var(--border)}
-.about-note{padding:20px;text-align:left}.about-note h3{font-family:Georgia,serif;font-size:28px;line-height:1.2}.about-note p{color:var(--muted);line-height:1.9;font-size:14px}
-.products,.game-section{border-top:1px solid var(--border);background:var(--section)}
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.product-slot{min-height:245px;padding:18px;border:1px dashed var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--card);cursor:pointer;transition:.25s}
-.product-slot:hover{border-color:var(--button);transform:translateY(-3px)}.plus{font-size:34px;color:var(--muted)}.product-slot h3{font-family:Georgia,serif;font-size:17px}.product-slot p{color:var(--muted);font-size:12px;line-height:1.7}
-.game-box{max-width:650px;margin:auto;padding:30px 20px;border:1px solid var(--border);text-align:center;background:var(--card)}
-.game-title{font-family:Georgia,serif;font-size:clamp(30px,6vw,45px);letter-spacing:2px;margin:10px 0}.game-discount{color:var(--muted);font-size:23px;letter-spacing:3px;margin:15px 0}.game-description{color:var(--muted);font-size:13px;line-height:1.8}
-.brand-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}.brand-option{padding:17px 8px;border:1px solid var(--border);color:var(--text);font-weight:bold;letter-spacing:2px;background:var(--section)}
-.coming-soon{display:block;background:var(--button);color:var(--button-text);padding:16px;margin-top:20px;font-family:Georgia,serif;font-size:22px;font-weight:bold;letter-spacing:3px}
-.contact{text-align:center;background:var(--contact);border-top:1px solid var(--border)}.contact p{color:var(--muted);line-height:1.8}
-footer{padding:25px 15px;text-align:center;color:var(--muted);font-size:11px;letter-spacing:1px}
-body[dir="rtl"] .about-note{text-align:right}body[dir="rtl"] .eyebrow{letter-spacing:1px}body[dir="rtl"] .game-title{letter-spacing:1px}
-.collection-view.hidden{display:none}.product-detail{display:none}.product-detail.active{display:block}
-.detail-container{max-width:900px;margin:auto;padding:30px 20px 60px}
-.back-button{padding:12px 18px;margin-bottom:25px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer}
-.detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
-.main-product-image{width:100%;aspect-ratio:1/1;max-height:550px;background:var(--card);border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--muted);font-size:13px;text-align:center}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+--bg:#11100e;--header:#181512;--section:#171512;
+--card:#1e1a15;--contact:#211c16;--text:#eee4d3;
+--muted:#cdb99a;--border:#554633;--button:#cdb99a;
+--button-text:#17130f
+}
+body.light-mode{
+--bg:#f3ede2;--header:#e9dfd0;--section:#eee6d9;
+--card:#e5dac8;--contact:#e8ddcd;--text:#292116;
+--muted:#66543d;--border:#b6a080;--button:#33291d;
+--button-text:#f5eddf
+}
+body{
+margin:0;background:var(--bg);color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+transition:background .3s,color .3s
+}
+a{color:inherit}
+button,input{font:inherit}
+.site-header{
+position:sticky;top:0;z-index:20;display:flex;
+align-items:center;justify-content:space-between;gap:12px;
+padding:12px clamp(12px,4vw,50px);
+background:var(--header);border-bottom:1px solid var(--border)
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{
+width:48px;height:48px;border-radius:50%;
+object-fit:cover;border:1px solid #b69a70
+}
+.brand-name{margin:0;font-size:14px;letter-spacing:2px}
+.brand-tag{margin:5px 0 0;color:var(--muted);font-size:9px;letter-spacing:2px}
+.header-actions{display:flex;align-items:center;gap:8px}
+.nav-link,.language-btn,.theme-btn{
+color:var(--text);font-size:11px;letter-spacing:1px;
+border:1px solid var(--border);padding:10px 12px;
+background:transparent;cursor:pointer;text-decoration:none
+}
+.hero{
+min-height:570px;display:grid;place-items:center;
+padding:70px 20px;text-align:center;
+background:linear-gradient(rgba(12,11,10,.72),rgba(12,11,10,.86)),
+url("photo-2.jpg") center 35%/cover no-repeat;
+border-bottom:1px solid var(--border)
+}
+body.light-mode .hero{
+background:linear-gradient(rgba(243,237,226,.72),rgba(243,237,226,.85)),
+url("photo-2.jpg") center 35%/cover no-repeat
+}
+.hero-content{max-width:760px}
+.eyebrow{color:var(--muted);font-size:11px;letter-spacing:4px}
+.hero h1{
+margin:20px 0 14px;font-family:Georgia,serif;
+font-size:clamp(42px,9vw,82px);line-height:.98
+}
+.hero-copy{color:var(--muted);line-height:1.9;font-size:15px}
+.button{
+display:inline-block;margin-top:22px;padding:14px 23px;
+background:var(--button);color:var(--button-text);
+text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.5px
+}
+.section{width:min(1100px,100%);margin:auto;padding:68px 20px}
+.section-heading{
+text-align:center;margin:0 0 12px;letter-spacing:3px;
+font-family:Georgia,serif
+}
+.section-intro{
+text-align:center;color:var(--muted);font-size:13px;
+line-height:1.8;margin:0 auto 30px;max-width:580px
+}
+.about-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center
+}
+.about-grid img{
+width:100%;display:block;max-height:570px;
+object-fit:cover;border:1px solid var(--border)
+}
+.about-note{padding:20px;text-align:left}
+.about-note h3{font-family:Georgia,serif;font-size:28px;line-height:1.2}
+.about-note p{color:var(--muted);line-height:1.9;font-size:14px}
+.products,.game-section{
+border-top:1px solid var(--border);background:var(--section)
+}
+.product-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+}
+.product-slot{
+min-height:245px;padding:18px;border:1px dashed var(--border);
+display:flex;flex-direction:column;justify-content:center;
+align-items:center;text-align:center;background:var(--card);
+cursor:pointer;transition:.25s
+}
+.product-slot:hover{border-color:var(--button);transform:translateY(-3px)}
+.plus{font-size:34px;color:var(--muted)}
+.product-slot h3{font-family:Georgia,serif;font-size:17px}
+.product-slot p{color:var(--muted);font-size:12px;line-height:1.7}
+.game-box{
+max-width:650px;margin:auto;padding:30px 20px;
+border:1px solid var(--border);text-align:center;background:var(--card)
+}
+.game-title{
+font-family:Georgia,serif;font-size:clamp(30px,6vw,45px);
+letter-spacing:2px;margin:10px 0
+}
+.game-discount{color:var(--muted);font-size:23px;letter-spacing:3px;margin:15px 0}
+.game-description{color:var(--muted);font-size:13px;line-height:1.8}
+.brand-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}
+.brand-option{
+padding:17px 8px;border:1px solid var(--border);
+color:var(--text);font-weight:bold;letter-spacing:2px;background:var(--section)
+}
+.coming-soon{
+display:block;background:var(--button);color:var(--button-text);
+padding:16px;margin-top:20px;font-family:Georgia,serif;
+font-size:22px;font-weight:bold;letter-spacing:3px
+}
+.contact{text-align:center;background:var(--contact);border-top:1px solid var(--border)}
+.contact p{color:var(--muted);line-height:1.8}
+footer{
+padding:25px 15px;text-align:center;color:var(--muted);
+font-size:11px;letter-spacing:1px
+}
+
+/* PRODUCT DETAILS */
+.collection-view.hidden{display:none}
+.product-detail{display:none}
+.product-detail.active{display:block}
+.detail-container{max-width:1000px;margin:auto;padding:30px 20px 60px}
+.back-button{
+padding:12px 18px;margin-bottom:25px;
+border:1px solid var(--border);background:transparent;
+color:var(--text);cursor:pointer
+}
+.detail-layout{
+display:grid;grid-template-columns:1.1fr .9fr;
+gap:28px;align-items:start
+}
+.main-product-image{
+width:100%;aspect-ratio:1/1;max-height:550px;
+background:var(--card);border:1px dashed var(--border);
+display:flex;align-items:center;justify-content:center;
+overflow:hidden;color:var(--muted);font-size:13px;text-align:center
+}
 .main-product-image img{width:100%;height:100%;object-fit:contain}
-.gallery-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
-.gallery-image{aspect-ratio:1/1;border:1px dashed var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:10px;overflow:hidden;cursor:pointer}
+.gallery-grid{
+display:grid;grid-template-columns:repeat(5,1fr);
+gap:9px;margin-top:12px
+}
+.gallery-image{
+aspect-ratio:1/1;border:1px dashed var(--border);
+background:var(--card);display:flex;align-items:center;
+justify-content:center;color:var(--muted);font-size:10px;
+overflow:hidden;cursor:pointer
+}
 .gallery-image img{width:100%;height:100%;object-fit:cover}
 .detail-info{padding:22px;background:var(--card);border:1px solid var(--border)}
-.detail-title{font-family:Georgia,serif;font-size:28px;margin:15px 0}.detail-description,.detail-note{color:var(--muted);font-size:13px;line-height:1.8}
-.detail-label{color:var(--muted);font-size:11px;letter-spacing:2px;margin:22px 0 10px}
-.detail-stock{font-size:14px}.detail-price{font-size:23px;font-weight:bold}
-.old-price{text-decoration:line-through;color:var(--muted);font-size:15px;margin-inline-end:10px}
-.discount-price{color:#c99d69}.discount-badge{display:inline-block;background:#554633;color:white;padding:5px 8px;font-size:11px;margin-inline-start:8px}
-.size-options{display:flex;flex-wrap:wrap;gap:9px}.size-option{min-width:48px;padding:13px 10px;background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer}
-.size-option.selected{background:var(--button);color:var(--button-text)}.size-option.unavailable,.size-option.not-set{text-decoration:line-through;opacity:.4;cursor:not-allowed}
-.whatsapp-order{display:block;width:100%;margin-top:25px;padding:16px;text-align:center;text-decoration:none;background:var(--button);color:var(--button-text);font-weight:bold;letter-spacing:1px}
+.detail-title{font-family:Georgia,serif;font-size:28px;margin:15px 0}
+.detail-description,.detail-note{
+color:var(--muted);font-size:13px;line-height:1.8
+}
+.detail-label{
+color:var(--muted);font-size:11px;letter-spacing:2px;margin:22px 0 10px
+}
+.detail-stock{font-size:14px}
+.detail-price{font-size:23px;font-weight:bold}
+.old-price{
+text-decoration:line-through;color:var(--muted);
+font-size:15px;margin-inline-end:10px
+}
+.discount-price{color:#c99d69}
+.discount-badge{
+display:inline-block;background:#554633;color:white;
+padding:5px 8px;font-size:11px;margin-inline-start:8px
+}
+.size-options{display:flex;flex-wrap:wrap;gap:9px}
+.size-option{
+min-width:48px;padding:13px 10px;background:transparent;
+color:var(--text);border:1px solid var(--border);cursor:pointer
+}
+.size-option.selected{background:var(--button);color:var(--button-text)}
+.size-option.unavailable,.size-option.not-set{
+text-decoration:line-through;opacity:.4;cursor:not-allowed
+}
+.quantity-row{display:flex;align-items:center;gap:12px}
+.quantity-input{
+width:90px;padding:12px;background:var(--section);
+border:1px solid var(--border);color:var(--text)
+}
+.whatsapp-order{
+display:block;width:100%;margin-top:25px;padding:16px;
+text-align:center;text-decoration:none;background:var(--button);
+color:var(--button-text);font-weight:bold;letter-spacing:1px
+}
 .whatsapp-order.disabled{opacity:.4;pointer-events:none}
-@media(max-width:700px){.site-header{padding:10px}.brand-logo{width:40px;height:40px}.brand-name{font-size:11px;letter-spacing:1px}.brand-tag{font-size:7px;letter-spacing:1px}.nav-link,.language-btn,.theme-btn{padding:9px 7px;font-size:9px}.header-actions{gap:5px}.hero{min-height:520px}.about-grid{grid-template-columns:1fr}.about-note{text-align:center}.product-grid{grid-template-columns:1fr 1fr}.product-slot{min-height:190px;padding:12px}.detail-layout{grid-template-columns:1fr}.detail-info{padding:16px}}
-@media(max-width:380px){.brand{gap:6px}.brand-name{font-size:10px}.nav-link,.language-btn,.theme-btn{font-size:8px;padding:8px 5px}.product-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+.site-header{padding:10px}
+.brand-logo{width:40px;height:40px}
+.brand-name{font-size:11px;letter-spacing:1px}
+.brand-tag{font-size:7px;letter-spacing:1px}
+.nav-link,.language-btn,.theme-btn{padding:9px 7px;font-size:9px}
+.header-actions{gap:5px}
+.hero{min-height:520px}
+.about-grid{grid-template-columns:1fr}
+.about-note{text-align:center}
+.product-grid{grid-template-columns:1fr 1fr}
+.product-slot{min-height:190px;padding:12px}
+.detail-layout{grid-template-columns:1fr}
+.detail-info{padding:16px}
+}
+@media(max-width:380px){
+.brand{gap:6px}
+.brand-name{font-size:10px}
+.nav-link,.language-btn,.theme-btn{font-size:8px;padding:8px 5px}
+.product-grid{grid-template-columns:1fr}
+}
+body[dir="rtl"] .about-note{text-align:right}
+body[dir="rtl"] .eyebrow{letter-spacing:1px}
+body[dir="rtl"] .game-title{letter-spacing:1px}
 </style>
 </head>
+
 <body>
 <header class="site-header">
- <div class="brand"><img class="brand-logo" src="logo.jpg" alt="Another World logo"><div><h2 class="brand-name">ANOTHER WORLD</h2><p class="brand-tag">VINTAGE STREETWEAR</p></div></div>
+ <div class="brand">
+  <img class="brand-logo" src="logo.jpg" alt="Another World logo">
+  <div>
+   <h2 class="brand-name">ANOTHER WORLD</h2>
+   <p class="brand-tag">VINTAGE STREETWEAR</p>
+  </div>
+ </div>
  <div class="header-actions">
   <a class="nav-link" href="#products" data-en="COLLECTION" data-ar="المجموعة">COLLECTION</a>
   <button class="language-btn" id="languageBtn" type="button">AR العربية</button>
   <button class="theme-btn" id="themeBtn" type="button">🌙 DARK MODE</button>
  </div>
 </header>
+
 <main>
-<section class="hero"><div class="hero-content">
- <p class="eyebrow" data-en="RARE PIECES • VINTAGE • STREETWEAR" data-ar="قطع نادرة • ملابس فينتيج • ستريت وير">RARE PIECES • VINTAGE • STREETWEAR</p>
- <h1 data-en="WELCOME TO<br>ANOTHER WORLD" data-ar="مرحباً بك في<br>عالم آخر">WELCOME TO<br>ANOTHER WORLD</h1>
- <p class="hero-copy" data-en="Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces." data-ar="ليست مجرد ملابس، بل عالم مختلف.<br>اكتشف قطعاً مميزة من ملابس الفينتيج والستريت وير.">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
- <a class="button" href="#products" data-en="EXPLORE COLLECTION" data-ar="اكتشف المجموعة">EXPLORE COLLECTION</a>
-</div></section>
+<section class="hero">
+ <div class="hero-content">
+  <p class="eyebrow" data-en="RARE PIECES • VINTAGE • STREETWEAR" data-ar="قطع نادرة • ملابس فينتيج • ستريت وير">RARE PIECES • VINTAGE • STREETWEAR</p>
+  <h1 data-en="WELCOME TO<br>ANOTHER WORLD" data-ar="مرحباً بك في<br>عالم آخر">WELCOME TO<br>ANOTHER WORLD</h1>
+  <p class="hero-copy" data-en="Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces." data-ar="ليست مجرد ملابس، بل عالم مختلف.<br>اكتشف قطعاً مميزة من ملابس الفينتيج والستريت وير.">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
+  <a class="button" href="#products" data-en="EXPLORE COLLECTION" data-ar="اكتشف المجموعة">EXPLORE COLLECTION</a>
+ </div>
+</section>
+
 <section class="section" id="about">
  <h2 class="section-heading" data-en="OUR WORLD" data-ar="عالمنا">OUR WORLD</h2>
  <p class="section-intro" data-en="Different pieces. Same world. A carefully selected collection for people who like their own style." data-ar="قطع مختلفة، وعالم واحد. مجموعة مختارة بعناية للأشخاص الذين يحبون أسلوبهم الخاص.">Different pieces. Same world. A carefully selected collection for people who like their own style.</p>
  <div class="about-grid">
   <img src="photo-1.jpg" alt="Another World streetwear portrait">
-  <div class="about-note"><p class="eyebrow" data-en="THE ANOTHER WORLD IDENTITY" data-ar="هوية عالم آخر">THE ANOTHER WORLD IDENTITY</p><h3 data-en="NOT MADE<br>TO FIT IN." data-ar="لسنا هنا<br>لنشبه الآخرين.">NOT MADE<br>TO FIT IN.</h3><p data-en="We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition." data-ar="نبحث عن قطع مميزة من ملابس الفينتيج والستريت وير. نختار كل قطعة بعناية حسب طابعها وأسلوبها وحالتها.">We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p></div>
-  <div class="about-note"><p class="eyebrow" data-en="A DIFFERENT POINT OF VIEW" data-ar="نظرة مختلفة">A DIFFERENT POINT OF VIEW</p><h3 data-en="FIND YOUR<br>OWN PIECE." data-ar="اعثر على<br>قطعتك الخاصة.">FIND YOUR<br>OWN PIECE.</h3><p data-en="Explore the collection and contact us directly when you find something you like." data-ar="اكتشف مجموعتنا وتواصل معنا مباشرة عندما تجد قطعة تعجبك.">Explore the collection and contact us directly when you find something you like.</p></div>
+  <div class="about-note">
+   <p class="eyebrow" data-en="THE ANOTHER WORLD IDENTITY" data-ar="هوية عالم آخر">THE ANOTHER WORLD IDENTITY</p>
+   <h3 data-en="NOT MADE<br>TO FIT IN." data-ar="لسنا هنا<br>لنشبه الآخرين.">NOT MADE<br>TO FIT IN.</h3>
+   <p data-en="We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition." data-ar="نبحث عن قطع مميزة من ملابس الفينتيج والستريت وير. نختار كل قطعة بعناية حسب طابعها وأسلوبها وحالتها.">We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p>
+  </div>
+  <div class="about-note">
+   <p class="eyebrow" data-en="A DIFFERENT POINT OF VIEW" data-ar="نظرة مختلفة">A DIFFERENT POINT OF VIEW</p>
+   <h3 data-en="FIND YOUR<br>OWN PIECE." data-ar="اعثر على<br>قطعتك الخاصة.">FIND YOUR<br>OWN PIECE.</h3>
+   <p data-en="Explore the collection and contact us directly when you find something you like." data-ar="اكتشف مجموعتنا وتواصل معنا مباشرة عندما تجد قطعة تعجبك.">Explore the collection and contact us directly when you find something you like.</p>
+  </div>
   <img src="photo-2.jpg" alt="Another World streetwear outfit">
  </div>
 </section>
-<section class="game-section" id="game"><div class="section"><div class="game-box">
- <p class="eyebrow">ANOTHER WORLD EXCLUSIVE</p><h2 class="game-title">GUESS THE BRAND</h2>
- <h3 class="game-discount" data-en="WIN DISCOUNT" data-ar="اربح خصماً">WIN DISCOUNT</h3>
- <p class="game-description" data-en="Choose the correct brand and get rewarded." data-ar="اختر العلامة التجارية الصحيحة واحصل على مكافأتك.">Choose the correct brand and get rewarded.</p>
- <div class="brand-options"><div class="brand-option">NIKE</div><div class="brand-option">ADIDAS</div><div class="brand-option">PUMA</div><div class="brand-option">REEBOK</div><div class="brand-option">CHAMPION</div><div class="brand-option">FILA</div></div>
- <div class="coming-soon" data-en="COMING SOON" data-ar="قريباً">COMING SOON</div>
- <p class="game-description" data-en="STAY TUNED FOR SOMETHING SPECIAL." data-ar="ترقبوا شيئاً مميزاً.">STAY TUNED FOR SOMETHING SPECIAL.</p>
-</div></div></section>
-<section class="products" id="products"><div class="section">
- <h2 class="section-heading" data-en="OUR COLLECTION" data-ar="مجموعتنا">OUR COLLECTION</h2>
- <p class="section-intro" data-en="Select a piece to explore its details." data-ar="اضغط على أي قطعة لاستكشاف تفاصيلها.">Select a piece to explore its details.</p>
- <div class="collection-view" id="collectionView"><div class="product-grid" id="productGrid"></div></div>
- <div class="product-detail" id="productDetail"><div class="detail-container">
-  <button class="back-button" id="backButton" type="button" data-en="← BACK TO COLLECTION" data-ar="العودة إلى المجموعة ←">← BACK TO COLLECTION</button>
-  <div class="detail-layout"><div>
-   <div class="main-product-image" id="mainProductImage">MAIN PRODUCT PHOTO</div>
-   <div class="gallery-grid" id="galleryGrid"></div>
-   <p class="detail-note" data-en="Select a photo to view it larger." data-ar="اضغط على صورة لعرضها بحجم أكبر.">Select a photo to view it larger.</p>
+
+<section class="game-section" id="game">
+ <div class="section">
+  <div class="game-box">
+   <p class="eyebrow">ANOTHER WORLD EXCLUSIVE</p>
+   <h2 class="game-title">GUESS THE BRAND</h2>
+   <h3 class="game-discount" data-en="WIN DISCOUNT" data-ar="اربح خصماً">WIN DISCOUNT</h3>
+   <p class="game-description" data-en="Choose the correct brand and get rewarded." data-ar="اختر العلامة التجارية الصحيحة واحصل على مكافأتك.">Choose the correct brand and get rewarded.</p>
+   <div class="brand-options">
+    <div class="brand-option">NIKE</div>
+    <div class="brand-option">ADIDAS</div>
+    <div class="brand-option">PUMA</div>
+    <div class="brand-option">REEBOK</div>
+    <div class="brand-option">CHAMPION</div>
+    <div class="brand-option">FILA</div>
+   </div>
+   <div class="coming-soon" data-en="COMING SOON" data-ar="قريباً">COMING SOON</div>
+   <p class="game-description" data-en="STAY TUNED FOR SOMETHING SPECIAL." data-ar="ترقبوا شيئاً مميزاً.">STAY TUNED FOR SOMETHING SPECIAL.</p>
   </div>
-  <div class="detail-info">
-   <p class="eyebrow">ANOTHER WORLD COLLECTION</p>
-   <h2 class="detail-title" id="detailName">YOUR NEXT PIECE</h2>
-   <p class="detail-description" id="detailDescription"></p>
-   <p class="detail-label" data-en="AVAILABILITY" data-ar="الكمية المتوفرة">AVAILABILITY</p>
-   <p class="detail-stock" id="detailStock"></p>
-   <p class="detail-label" data-en="PRICE" data-ar="السعر">PRICE</p>
-   <div class="detail-price" id="detailPrice"></div>
-   <p class="detail-label" data-en="SELECT YOUR SIZE" data-ar="اختر مقاسك">SELECT YOUR SIZE</p>
-   <div class="size-options" id="sizeOptions"></div>
-   <p class="detail-note" id="sizeNote"></p>
-   <a class="whatsapp-order disabled" id="whatsappOrder" href="#" target="_blank" rel="noopener" data-en="SELECT AN AVAILABLE SIZE" data-ar="اختر مقاساً متوفراً">SELECT AN AVAILABLE SIZE</a>
-  </div></div>
- </div></div>
-</div></section>
+ </div>
+</section>
+
+<section class="products" id="products">
+ <div class="section">
+  <h2 class="section-heading" data-en="OUR COLLECTION" data-ar="مجموعتنا">OUR COLLECTION</h2>
+  <p class="section-intro" data-en="Select a piece to explore its details." data-ar="اضغط على أي قطعة لاستكشاف تفاصيلها.">Select a piece to explore its details.</p>
+
+  <div class="collection-view" id="collectionView">
+   <div class="product-grid" id="productGrid"></div>
+  </div>
+
+  <div class="product-detail" id="productDetail">
+   <div class="detail-container">
+    <button class="back-button" id="backButton" type="button" data-en="← BACK TO COLLECTION" data-ar="العودة إلى المجموعة ←">← BACK TO COLLECTION</button>
+    <div class="detail-layout">
+     <div>
+      <div class="main-product-image" id="mainProductImage">MAIN PRODUCT PHOTO</div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <p class="detail-note" data-en="Select a photo to view it larger." data-ar="اضغط على صورة لعرضها بحجم أكبر.">Select a photo to view it larger.</p>
+     </div>
+
+     <div class="detail-info">
+      <p class="eyebrow">ANOTHER WORLD COLLECTION</p>
+      <h2 class="detail-title" id="detailName">YOUR NEXT PIECE</h2>
+      <p class="detail-description" id="detailDescription"></p>
+
+      <p class="detail-label" data-en="AVAILABILITY" data-ar="الكمية المتوفرة">AVAILABILITY</p>
+      <p class="detail-stock" id="detailStock"></p>
+
+      <p class="detail-label" data-en="PRICE" data-ar="السعر">PRICE</p>
+      <div class="detail-price" id="detailPrice"></div>
+
+      <p class="detail-label" data-en="SELECT YOUR SIZE" data-ar="اختر مقاسك">SELECT YOUR SIZE</p>
+      <div class="size-options" id="sizeOptions"></div>
+      <p class="detail-note" id="sizeNote"></p>
+
+      <p class="detail-label" data-en="QUANTITY" data-ar="عدد القطع">QUANTITY</p>
+      <div class="quantity-row">
+       <input class="quantity-input" id="quantityInput" type="number" min="1" value="1" inputmode="numeric">
+       <span id="quantityHint"></span>
+      </div>
+
+      <a class="whatsapp-order disabled" id="whatsappOrder" href="#" target="_blank" rel="noopener" data-en="SELECT AN AVAILABLE SIZE" data-ar="اختر مقاساً متوفراً">SELECT AN AVAILABLE SIZE</a>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
 <section class="section contact" id="contact">
  <h2 class="section-heading" data-en="LET'S TALK" data-ar="لنتحدث">LET'S TALK</h2>
  <p data-en="Found a piece you like? Contact us on WhatsApp." data-ar="وجدت قطعة أعجبتك؟ تواصل معنا عبر واتساب.">Found a piece you like? Contact us on WhatsApp.</p>
@@ -124,90 +352,326 @@ body[dir="rtl"] .about-note{text-align:right}body[dir="rtl"] .eyebrow{letter-spa
  <p><a href="https://www.instagram.com/another_w00rld/" target="_blank" rel="noopener" data-en="FOLLOW US ON INSTAGRAM" data-ar="تابعنا على إنستغرام">FOLLOW US ON INSTAGRAM</a></p>
 </section>
 </main>
+
 <footer data-en="ANOTHER WORLD © 2026 — VINTAGE STREETWEAR" data-ar="عالم آخر © 2026 — ملابس فينتيج">ANOTHER WORLD © 2026 — VINTAGE STREETWEAR</footer>
+
 <script>
 const languageBtn=document.getElementById("languageBtn");
 const themeBtn=document.getElementById("themeBtn");
 let currentLanguage=localStorage.getItem("aw-language")||"en";
 let isLight=localStorage.getItem("aw-theme")==="light";
 
-/* Add product information here when ready.
-   Images: use paths such as products/item1/front.jpg
-   Size values: true = available, false = unavailable, null = not set yet.
+/*
+  PRODUCT SETTINGS:
+  Add your product information here later.
+
+  Example image paths:
+  products/item1/front.jpg
+  products/item1/back.jpg
+  products/item1/side.jpg
+
+  Size values:
+  true  = available
+  false = unavailable
+  null  = not configured yet
 */
+
 const products=[
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
- {name:"",description:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]}
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]},
+ {name:"",nameAr:"",description:"",descriptionAr:"",stock:null,price:null,discountPrice:null,sizes:{S:null,M:null,L:null,XL:null,XXL:null},images:[]}
 ];
+
 const grid=document.getElementById("productGrid");
 const collectionView=document.getElementById("collectionView");
 const productDetail=document.getElementById("productDetail");
-let selectedProduct=0,selectedSize="";
-const money=value=>value===null||value===""?"":Number(value).toLocaleString("en-US")+" DZD";
-function ar(){return currentLanguage==="ar"}
+let selectedProduct=0;
+let selectedSize="";
+let quantity=1;
+
+const isArabic=()=>currentLanguage==="ar";
+const money=value=>Number(value).toLocaleString("en-US")+" DZD";
+const text=(en,ar)=>isArabic()?ar:en;
+
+function updateLanguage(){
+ document.documentElement.lang=currentLanguage;
+ document.body.dir=isArabic()?"rtl":"ltr";
+
+ document.querySelectorAll("[data-en][data-ar]").forEach(element=>{
+  element.innerHTML=element.dataset[currentLanguage];
+ });
+
+ languageBtn.textContent=isArabic()?"EN English":"AR العربية";
+ updateThemeButton();
+ renderProducts();
+
+ if(productDetail.classList.contains("active")){
+  showProduct(selectedProduct,false);
+ }
+}
+
+function updateThemeButton(){
+ themeBtn.textContent=isLight
+  ?text("🌙 DARK MODE","🌙 الوضع الداكن")
+  :text("☀️ LIGHT MODE","☀️ الوضع الفاتح");
+}
+
+function updateTheme(){
+ document.body.classList.toggle("light-mode",isLight);
+ document.querySelector('meta[name="theme-color"]').setAttribute(
+  "content",isLight?"#f3ede2":"#11100e"
+ );
+ localStorage.setItem("aw-theme",isLight?"light":"dark");
+ updateThemeButton();
+}
+
 function renderProducts(){
  grid.innerHTML="";
- products.forEach((p,i)=>{
+
+ products.forEach((p,index)=>{
   const card=document.createElement("article");
-  card.className="product-slot";card.tabIndex=0;card.setAttribute("role","button");
-  const title=p.name|| (ar()?"قطعتك القادمة":"YOUR NEXT PIECE");
-  const summary=p.price!==null?money(p.discountPrice??p.price):(ar()?"الصورة والسعر قريباً":"PHOTO & PRICE COMING SOON");
-  card.innerHTML=`<span class="plus">+</span><h3></h3><p></p>`;
-  card.querySelector("h3").textContent=title;
-  card.querySelector("p").textContent=summary;
-  card.addEventListener("click",()=>showProduct(i));
-  card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showProduct(i)}});
+  card.className="product-slot";
+  card.tabIndex=0;
+  card.setAttribute("role","button");
+
+  const plus=document.createElement("span");
+  plus.className="plus";
+  plus.textContent="+";
+
+  const title=document.createElement("h3");
+  title.textContent=(isArabic()?p.nameAr:p.name)||
+   text("YOUR NEXT PIECE","قطعتك القادمة");
+
+  const info=document.createElement("p");
+  info.textContent=p.price!==null
+   ?money(p.discountPrice!==null?p.discountPrice:p.price)
+   :text("Product photo coming soon — Price to be added","صورة المنتج قريباً — السعر سيضاف لاحقاً");
+
+  card.append(plus,title,info);
+  card.addEventListener("click",()=>showProduct(index));
+  card.addEventListener("keydown",event=>{
+   if(event.key==="Enter"||event.key===" "){
+    event.preventDefault();
+    showProduct(index);
+   }
+  });
   grid.appendChild(card);
  });
 }
+
 function showProduct(index,scroll=true){
- selectedProduct=index;selectedSize="";
- const p=products[index],name=p.name||(ar()?"قطعتك القادمة":"YOUR NEXT PIECE");
+ selectedProduct=index;
+ selectedSize="";
+ quantity=1;
+
+ const p=products[index];
+ const name=(isArabic()?p.nameAr:p.name)||
+  text("YOUR NEXT PIECE","قطعتك القادمة");
+
  document.getElementById("detailName").textContent=name;
- document.getElementById("detailDescription").textContent=p.description||(ar()?"تفاصيل القطعة ستضاف قريباً.":"Product description will be added soon.");
- document.getElementById("detailStock").textContent=p.stock===null?(ar()?"الكمية: ستضاف لاحقاً":"Quantity: To be added"):(ar()?"الكمية المتوفرة: ":"Available: ")+p.stock;
- let priceHTML="";
+ document.getElementById("detailDescription").textContent=
+  (isArabic()?p.descriptionAr:p.description)||
+  text("Product description will be added soon.","تفاصيل القطعة ستضاف قريباً.");
+
+ document.getElementById("detailStock").textContent=
+  p.stock===null
+  ?text("Quantity: To be added","الكمية: ستضاف لاحقاً")
+  :text("Available pieces: ","القطع المتوفرة: ")+p.stock;
+
+ const priceBox=document.getElementById("detailPrice");
+ priceBox.innerHTML="";
+
  if(p.price!==null){
   if(p.discountPrice!==null&&p.discountPrice<p.price){
-   priceHTML=`<span class="old-price">${money(p.price)}</span><span class="discount-price">${money(p.discountPrice)}</span><span class="discount-badge">DISCOUNT</span>`;
-  }else priceHTML=money(p.price);
- }else priceHTML=ar()?"السعر سيضاف لاحقاً":"Price to be added";
- document.getElementById("detailPrice").innerHTML=priceHTML;
- const main=document.getElementById("mainProductImage");
- const gallery=document.getElementById("galleryGrid");
- main.innerHTML="";gallery.innerHTML="";
- if(p.images.length){
-  const first=document.createElement("img");first.src=p.images[0];first.alt=name;main.appendChild(first);
-  p.images.slice(0,5).forEach((src,i)=>{
-   const thumb=document.createElement("div");thumb.className="gallery-image";
-   const img=document.createElement("img");img.src=src;img.alt=name+" photo "+(i+1);
-   thumb.appendChild(img);thumb.addEventListener("click",()=>{main.innerHTML="";const big=document.createElement("img");big.src=src;big.alt=name;main.appendChild(big)});
-   gallery.appendChild(thumb);
-  });
- }else{
-  main.textContent=ar()?"مكان الصورة الرئيسية":"MAIN PRODUCT PHOTO";
-  for(let i=0;i<5;i++){const box=document.createElement("div");box.className="gallery-image";box.textContent=ar()?"صورة":"PHOTO";gallery.appendChild(box)}
- }
- const sizes=document.getElementById("sizeOptions");sizes.innerHTML="";
- Object.entries(p.sizes).forEach(([size,available])=>{
-  const b=document.createElement("button");b.type="button";b.className="size-option";b.textContent=size;
-  if(available===false){b.classList.add("unavailable");b.disabled=true}
-  else if(available===null){b.classList.add("not-set");b.disabled=true}
-  else b.addEventListener("click",()=>{selectedSize=size;updateSizes();updateOrder()});
-  sizes.appendChild(b);
- });
- document.getElementById("sizeNote").textContent=ar()?"المقاس المشطوب غير متوفر. المقاسات غير المحددة لم تُضف بعد.":"Crossed-out sizes are unavailable. Unset sizes have not been configured yet.";
- updateSizes();updateOrder();
- collectionView.classList.add("hidden");productDetail.classList.add("active");
- if(scroll)document.getElementById("products").scrollIntoView({behavior:"smooth"});
+   const old=document.createElement("span");
+   old.className="old-price";
+   old.textContent=money(p.price);
+
+   const sale=documen
+   
+const sale=document.createElement("span");
+sale.className="discount-price";
+sale.textContent=money(p.discountPrice);
+priceBox.appendChild(old);
+priceBox.appendChild(sale);
+
+const badge=document.createElement("span");
+badge.className="discount-badge";
+badge.textContent=text("SALE","تخفيض");
+priceBox.appendChild(badge);
+}else{
+priceBox.textContent=money(p.price);
 }
+}else{
+priceBox.textContent=text("Price to be added","السعر سيضاف لاحقاً");
+}
+
+const main=document.getElementById("mainProductImage");
+const gallery=document.getElementById("galleryGrid");
+main.innerHTML="";
+gallery.innerHTML="";
+
+if(p.images && p.images.length){
+const first=document.createElement("img");
+first.src=p.images[0];
+first.alt=name;
+main.appendChild(first);
+
+p.images.forEach((src,i)=>{
+const box=document.createElement("div");
+box.className="gallery-image";
+const img=document.createElement("img");
+img.src=src;
+img.alt=name+" "+(i+1);
+box.appendChild(img);
+box.addEventListener("click",()=>{
+main.innerHTML="";
+const big=document.createElement("img");
+big.src=src;
+big.alt=name;
+main.appendChild(big);
+});
+gallery.appendChild(box);
+});
+}else{
+main.textContent=text("MAIN PRODUCT PHOTO","الصورة الرئيسية للقطعة");
+for(let i=0;i<5;i++){
+const box=document.createElement("div");
+box.className="gallery-image";
+box.textContent=text("PHOTO","صورة");
+gallery.appendChild(box);
+}
+}
+
+const sizes=document.getElementById("sizeOptions");
+sizes.innerHTML="";
+
+Object.entries(p.sizes).forEach(([size,available])=>{
+const b=document.createElement("button");
+b.type="button";
+b.className="size-option";
+b.textContent=size;
+
+if(available===false){
+b.classList.add("unavailable");
+b.disabled=true;
+}else if(available!==true){
+b.classList.add("not-set");
+b.disabled=true;
+}else{
+b.addEventListener("click",()=>{
+selectedSize=size;
+updateSizes();
+updateOrder();
+});
+}
+sizes.appendChild(b);
+});
+
+updateSizes();
+updateOrder();
+
+collectionView.classList.add("hidden");
+productDetail.classList.add("active");
+
+if(scroll){
+document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+}
+
 function updateSizes(){
- document.querySelectorAll(".size-option").forEach(b=>b.classList.toggle("selected",b.textContent===selectedSize));
+document.querySelectorAll(".size-option").forEach(b=>{
+b.classList.toggle("selected",b.textContent===selectedSize);
+});
 }
+
 function updateOrder(){
- const p=products[selectedProduct],link=document.getElementById("whatsappOrder");
- if(!selectedSize||p.stock===0){link.classList.add("disabled");link.removeAttribute("href");link.textContent=ar()?"اختر مقاساً متوفراً":"SELECT AN AVAILABLE SI
+const p=products[selectedProduct];
+const link=document.getElementById("whatsappOrder");
+
+if(!selectedSize || !p.stock || p.stock<1){
+link.classList.add("disabled");
+link.removeAttribute("href");
+link.textContent=text("SELECT AN AVAILABLE SIZE","اختر مقاساً متوفراً");
+return;
+}
+
+if(p.price===null){
+link.classList.add("disabled");
+link.removeAttribute("href");
+link.textContent=text("PRICE NOT SET YET","لم يتم تحديد السعر بعد");
+return;
+}
+
+const finalPrice=p.discountPrice!==null?p.discountPrice:p.price;
+
+const message=
+"Hello Another World! I want to order:\n"+
+"Product: "+(p.name||"Product")+"\n"+
+"Size: "+selectedSize+"\n"+
+"Quantity: "+quantity+"\n"+
+"Price: "+money(finalPrice);
+
+link.href="https://wa.me/213791237069?text="+encodeURIComponent(message);
+link.classList.remove("disabled");
+link.textContent=text("ORDER ON WHATSAPP","اطلب عبر واتساب");
+}
+
+document.getElementById("backButton").addEventListener("click",()=>{
+productDetail.classList.remove("active");
+collectionView.classList.remove("hidden");
+document.getElementById("products").scrollIntoView({behavior:"smooth"});
+});
+
+languageBtn.addEventListener("click",()=>{
+currentLanguage=currentLanguage==="en"?"ar":"en";
+localStorage.setItem("aw-language",currentLanguage);
+updateLanguage();
+});
+
+themeBtn.addEventListener("click",()=>{
+isLight=!isLight;
+updateTheme();
+});
+
+function updateLanguage(){
+document.documentElement.lang=currentLanguage;
+document.body.dir=isArabic()?"rtl":"ltr";
+
+document.querySelectorAll("[data-en][data-ar]").forEach(element=>{
+element.innerHTML=element.dataset[currentLanguage];
+});
+
+languageBtn.textContent=isArabic()?"EN English":"AR العربية";
+updateThemeButton();
+renderProducts();
+
+if(productDetail.classList.contains("active")){
+showProduct(selectedProduct,false);
+}
+}
+
+function updateThemeButton(){
+themeBtn.textContent=isLight
+?text("🌙 DARK MODE","🌙 الوضع الداكن")
+:text("☀️ LIGHT MODE","☀️ الوضع الفاتح");
+}
+
+function updateTheme(){
+document.body.classList.toggle("light-mode",isLight);
+document.querySelector('meta[name="theme-color"]').setAttribute(
+"content",isLight?"#f3ede2":"#11100e"
+);
+localStorage.setItem("aw-theme",isLight?"light":"dark");
+updateThemeButton();
+}
+
+updateTheme();
+updateLanguage();
+renderProducts();
+ </script>
+</body>
+</html>
