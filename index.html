@@ -428,10 +428,11 @@ function updateTheme(){
  updateThemeButton();
 }
 
+
 function renderProducts(){
  grid.innerHTML="";
 
- products.forEach((p,index)=>{
+ products.forEach((p,i)=>{
   const card=document.createElement("article");
   card.className="product-slot";
   card.tabIndex=0;
@@ -442,25 +443,33 @@ function renderProducts(){
   plus.textContent="+";
 
   const title=document.createElement("h3");
-  title.textContent=(isArabic()?p.nameAr:p.name)||
-   text("YOUR NEXT PIECE","قطعتك القادمة");
+  title.textContent=p.name || text("YOUR NEXT PIECE","قطعتك القادمة");
 
-  const info=document.createElement("p");
-  info.textContent=p.price!==null
-   ?money(p.discountPrice!==null?p.discountPrice:p.price)
-   :text("Product photo coming soon — Price to be added","صورة المنتج قريباً — السعر سيضاف لاحقاً");
+  const description=document.createElement("p");
+  description.innerHTML=text(
+   "Product photo coming soon<br>Price: to be added",
+   "صورة المنتج قريباً<br>السعر: سيضاف لاحقاً"
+  );
 
-  card.append(plus,title,info);
-  card.addEventListener("click",()=>showProduct(index));
-  card.addEventListener("keydown",event=>{
-   if(event.key==="Enter"||event.key===" "){
-    event.preventDefault();
-    showProduct(index);
+  card.appendChild(plus);
+  card.appendChild(title);
+  card.appendChild(description);
+
+  card.addEventListener("click",()=>{
+   showProduct(i);
+  });
+
+  card.addEventListener("keydown",e=>{
+   if(e.key==="Enter" || e.key===" "){
+    e.preventDefault();
+    showProduct(i);
    }
   });
+
   grid.appendChild(card);
  });
 }
+ 
 
 function showProduct(index,scroll=true){
  selectedProduct=index;
