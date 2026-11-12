@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#11100e">
 <title>ANOTHER WORLD | Admin</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{box-sizing:border-box}
 body{
@@ -21,20 +23,22 @@ h1{text-align:center;margin:25px 0}
  background:#1e1a15;border:1px solid #554633;
  padding:25px;margin:20px 0;
 }
-input{
+input,select{
  display:block;width:100%;padding:14px;margin:12px 0;
  background:#11100e;color:#eee4d3;
  border:1px solid #554633;font-size:14px;
 }
+input[type=file]{padding:12px}
 button{
  padding:13px 20px;background:#cdb99a;
  color:#17130f;border:0;font-weight:bold;
  cursor:pointer;margin:5px 0;
 }
-button:disabled{opacity:.5}
+button:disabled{opacity:.5;cursor:not-allowed}
 .primary{width:100%}
 .hidden{display:none!important}
 .message{color:#d98a78;font-size:13px;line-height:1.7}
+.success{color:#80d5a0}
 .stats{
  display:grid;grid-template-columns:repeat(2,1fr);gap:15px;
 }
@@ -56,6 +60,17 @@ th{color:#cdb99a;letter-spacing:1px}
  align-items:center;gap:10px;flex-wrap:wrap;
 }
 .badge{color:#80d5a0;font-size:12px}
+.preview{
+ width:100%;max-width:350px;max-height:350px;
+ object-fit:contain;background:#11100e;
+ border:1px solid #554633;padding:8px;
+ margin:12px 0;
+}
+.field-label{
+ display:block;color:#cdb99a;font-size:13px;
+ margin-top:18px;
+}
+.hint{color:#a99a83;font-size:11px;line-height:1.6}
 footer{text-align:center;color:#cdb99a;font-size:11px;padding:30px}
 @media(max-width:500px){
  body{padding:12px}
@@ -64,6 +79,7 @@ footer{text-align:center;color:#cdb99a;font-size:11px;padding:30px}
 }
 </style>
 </head>
+
 <body>
 <div class="container">
 
@@ -116,9 +132,56 @@ WINNERS
 </div>
 </div>
 
+<!-- GAME SETTINGS -->
+<div class="panel">
+<h2>GAME SETTINGS</h2>
+<p class="muted">
+Upload a new T-shirt image and select its correct brand.
+</p>
+
+<label class="field-label" for="gameImage">
+1. UPLOAD T-SHIRT IMAGE
+</label>
+
+<input id="gameImage" type="file" accept="image/*">
+
+<p class="hint">
+Choose an image without the visible brand logo.
+Maximum file size: 5 MB.
+</p>
+
+<img id="imagePreview" class="preview hidden"
+ alt="Game image preview">
+
+<p id="imageStatus" class="muted">
+No image selected.
+</p>
+
+<label class="field-label" for="correctBrand">
+2. SELECT CORRECT BRAND
+</label>
+
+<select id="correctBrand">
+<option value="NIKE">NIKE</option>
+<option value="ADIDAS">ADIDAS</option>
+<option value="PUMA">PUMA</option>
+<option value="REEBOK">REEBOK</option>
+<option value="CHAMPION">CHAMPION</option>
+<option value="FILA">FILA</option>
+</select>
+
+<button id="publishButton" class="primary" type="button">
+PUBLISH NEW GAME
+</button>
+
+<p id="gameMessage" class="message" aria-live="polite"></p>
+</div>
+
+<!-- PARTICIPANTS -->
 <div class="panel">
 <h2>GAME PARTICIPANTS</h2>
 <p class="muted">Latest game attempts</p>
+
 <div class="table-wrap">
 <table>
 <thead>
@@ -135,9 +198,11 @@ WINNERS
 <p id="participantsMessage" class="message"></p>
 </div>
 
+<!-- WINNERS -->
 <div class="panel">
 <h2>GAME WINNERS</h2>
 <p class="muted">Winner records and discount codes</p>
+
 <div class="table-wrap">
 <table>
 <thead>
@@ -175,8 +240,25 @@ const loginPanel = document.getElementById("loginPanel");
 const dashboard = document.getElementById("dashboard");
 const loginMessage = document.getElementById("loginMessage");
 
+const gameImage = document.getElementById("gameImage");
+const imagePreview = document.getElementById("imagePreview");
+const imageStatus = document.getElementById("imageStatus");
+const correctBrand = document.getElementById("correctBrand");
+const publishButton = document.getElementById("publishButton");
+const gameMessage = document.getElementById("gameMessage");
+
+let selectedImageFile = null;
+let currentGameImageUrl = "";
+let previewObjectUrl = null;
+
 function showError(element,message){
  element.textContent = message;
+ element.classList.remove("success");
+}
+
+function showSuccess(element,message){
+ element.textContent = message;
+ element.classList.add("success");
 }
 
 function addCell(row,value){
@@ -192,24 +274,19 @@ function formatDate(value){
 
 /* VERIFY ADMIN */
 async function verifyAdmin(){
- const {data:{session},error} =
+ const {data:{session},error:sessionError} =
  await db.auth.getSession();
 
- if(error || !session){
+ if(sessionError || !session){
   loginPanel.classList.remove("hidden");
   dashboard.classList.add("hidden");
   return false;
  }
 
- const {data,isError} =
+ const {data,error:adminError} =
  await db.rpc("is_admin");
 
- if(isError){
-  await db.auth.signOut();
-  return false;
- }
-
- if(data !== true){
+ if(adminError || data !== true){
   await db.auth.signOut();
   loginPanel.classList.remove("hidden");
   dashboard.classList.add("hidden");
@@ -227,7 +304,7 @@ async function verifyAdmin(){
  return true;
 }
 
-/* LOAD PARTICIPANTS AND WINNERS */
+/* LOAD PARTICIPANTS, WINNERS AND GAME SETTINGS */
 async function loadDashboard(){
 
  const participantsBody =
@@ -300,11 +377,199 @@ async function loadDashboard(){
   document.getElementById("winnersMessage").textContent =
    winners.data.length ? "" : "No winners yet.";
  }
+
+ await loadGameSettings();
 }
+
+/* LOAD CURRENT GAME SETTINGS */
+async function loadGameSettings(){
+
+ const {data,error} = await db
+  .from("game_settings")
+  .select("image_url,correct_brand")
+  .eq("id",1)
+  .maybeSingle();
+
+ if(error){
+  showError(gameMessage,"Could not load game settings: "+error.message);
+  return;
+ }
+
+ if(!data){
+  currentGameImageUrl = "";
+  imagePreview.classList.add("hidden");
+  imageStatus.textContent = "No game has been published yet.";
+  return;
+ }
+
+ currentGameImageUrl = data.image_url || "";
+
+ if(data.correct_brand){
+  correctBrand.value = data.correct_brand;
+ }
+
+ if(currentGameImageUrl){
+  imagePreview.src = currentGameImageUrl;
+  imagePreview.classList.remove("hidden");
+  imageStatus.textContent = "Current published game image.";
+ }
+
+ gameMessage.textContent = "";
+}
+
+/* IMAGE PREVIEW */
+gameImage.addEventListener("change",()=>{
+
+ const file = gameImage.files[0];
+
+ selectedImageFile = null;
+
+ if(previewObjectUrl){
+  URL.revokeObjectURL(previewObjectUrl);
+  previewObjectUrl = null;
+ }
+
+ if(!file){
+  imageStatus.textContent =
+   currentGameImageUrl ? "Current published image." : "No image selected.";
+  return;
+ }
+
+ if(!file.type.startsWith("image/")){
+  showError(gameMessage,"Please select a valid image.");
+  gameImage.value = "";
+  return;
+ }
+
+ if(file.size > 5 * 1024 * 1024){
+  showError(gameMessage,"Image must be smaller than 5 MB.");
+  gameImage.value = "";
+  return;
+ }
+
+ selectedImageFile = file;
+ previewObjectUrl = URL.createObjectURL(file);
+
+ imagePreview.src = previewObjectUrl;
+ imagePreview.classList.remove("hidden");
+
+ imageStatus.textContent = "New image ready to publish.";
+ gameMessage.textContent = "";
+});
+
+/* PUBLISH NEW GAME */
+publishButton.addEventListener("click",async()=>{
+
+ publishButton.disabled = true;
+ publishButton.textContent = "PUBLISHING...";
+ gameMessage.textContent = "";
+
+ try{
+
+  // Confirm the current user.
+  const {data:{user},error:userError} =
+   await db.auth.getUser();
+
+  if(userError || !user){
+   throw new Error("Please sign in again.");
+  }
+
+  // Verify administrator permission.
+  const {data:adminAllowed,error:adminError} =
+   await db.rpc("is_admin");
+
+  if(adminError || adminAllowed !== true){
+   throw new Error("Administrator permission required.");
+  }
+
+  let imageUrl = currentGameImageUrl;
+
+  // Upload a new image if selected.
+  if(selectedImageFile){
+
+   const extension =
+    selectedImageFile.name.split(".").pop().toLowerCase();
+
+   const filePath =
+    "games/" + Date.now() + "-" +
+    Math.random().toString(36).slice(2) + "." + extension;
+
+   const {error:uploadError} = await db.storage
+    .from("game-images")
+    .upload(filePath,selectedImageFile,{
+     cacheControl:"3600",
+     upsert:false,
+     contentType:selectedImageFile.type
+    });
+
+   if(uploadError){
+    throw new Error("Image upload failed: "+uploadError.message);
+   }
+
+   const {data:publicData} = db.storage
+    .from("game-images")
+    .getPublicUrl(filePath);
+
+   imageUrl = publicData.publicUrl;
+  }
+
+  if(!imageUrl){
+   throw new Error("Please upload a T-shirt image first.");
+  }
+
+  // Save game settings.
+  const {error:saveError} = await db
+   .from("game_settings")
+   .upsert({
+    id:1,
+    image_url:imageUrl,
+    correct_brand:correctBrand.value,
+    updated_at:new Date().toISOString(),
+    updated_by:user.id
+   },{
+    onConflict:"id"
+   });
+
+  if(saveError){
+   throw new Error("Could not save game settings: "+saveError.message);
+  }
+
+  currentGameImageUrl = imageUrl;
+  selectedImageFile = null;
+  gameImage.value = "";
+
+  if(previewObjectUrl){
+   URL.revokeObjectURL(previewObjectUrl);
+   previewObjectUrl = null;
+  }
+
+  imagePreview.src = imageUrl;
+  imagePreview.classList.remove("hidden");
+  imageStatus.textContent = "Published game image.";
+
+  showSuccess(
+   gameMessage,
+   "Game published successfully! Correct brand: "+correctBrand.value
+  );
+
+ }catch(error){
+
+  showError(
+   gameMessage,
+   error.message || "An unexpected error occurred."
+  );
+
+ }finally{
+
+  publishButton.disabled = false;
+  publishButton.textContent = "PUBLISH NEW GAME";
+ }
+});
 
 /* LOGIN */
 document.getElementById("loginForm")
 .addEventListener("submit",async event=>{
+
  event.preventDefault();
 
  const button=document.getElementById("loginButton");
@@ -314,6 +579,7 @@ document.getElementById("loginForm")
  loginMessage.textContent="";
 
  try{
+
   const email=document.getElementById("email").value.trim();
   const password=document.getElementById("password").value;
 
@@ -330,8 +596,11 @@ document.getElementById("loginForm")
   }
 
  }catch(error){
+
   showError(loginMessage,error.message);
+
  }finally{
+
   button.disabled=false;
   button.textContent="SIGN IN";
  }
@@ -344,15 +613,19 @@ document.getElementById("refreshButton")
 /* LOGOUT */
 document.getElementById("logoutButton")
 .addEventListener("click",async()=>{
+
  await db.auth.signOut();
+
  dashboard.classList.add("hidden");
  loginPanel.classList.remove("hidden");
+
  document.getElementById("password").value="";
  loginMessage.textContent="You have signed out.";
 });
 
 /* INITIAL CHECK */
 verifyAdmin();
+
 </script>
 </body>
 </html>
