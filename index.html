@@ -222,6 +222,28 @@ body[dir="rtl"] .viewer-close{right:auto;left:0}
 }
 .game-discount{color:var(--muted);font-size:23px;letter-spacing:3px;margin:15px 0}
 .game-description{color:var(--muted);font-size:13px;line-height:1.8}
+
+/* DYNAMIC GAME IMAGE */
+.game-image-container{
+ width:100%;
+ max-width:420px;
+ margin:22px auto;
+ background:var(--section);
+ border:1px solid var(--border);
+ overflow:hidden;
+}
+.game-image-container img{
+ width:100%;
+ height:320px;
+ object-fit:contain;
+ display:block;
+}
+.game-image-loading{
+ color:var(--muted);
+ padding:35px 10px;
+ font-size:12px;
+}
+
 .brand-options{
  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0;
 }
@@ -237,6 +259,8 @@ body[dir="rtl"] .viewer-close{right:auto;left:0}
 .brand-option:focus-visible{
  outline:2px solid var(--button);outline-offset:3px;
 }
+.brand-option:disabled{opacity:.5;cursor:not-allowed}
+
 .game-name{
  display:block;width:100%;max-width:350px;margin:20px auto 0;
  padding:14px;background:var(--section);color:var(--text);
@@ -322,6 +346,7 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
  .gallery-main{height:260px}
  .gallery-thumb{height:78px}
  .modal-content{padding:42px 16px 25px}
+ .game-image-container img{height:280px}
 }
 @media(max-width:380px){
  .brand{gap:6px}
@@ -454,6 +479,17 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
     Enter your name, choose the correct brand and win a 15% discount!
    </p>
 
+   <!-- DYNAMIC GAME IMAGE -->
+   <div class="game-image-container">
+    <p id="gameImageLoading" class="game-image-loading">
+     LOADING GAME IMAGE...
+    </p>
+    <img id="gameImage"
+         src=""
+         alt="Guess the brand"
+         style="display:none;">
+   </div>
+
    <input
     type="text"
     id="gameName"
@@ -477,6 +513,8 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
     <button class="brand-option" type="button" data-answer="CHAMPION">CHAMPION</button>
 
     <button class="brand-option" type="button" data-answer="FILA">FILA</button>
+
+    <button class="brand-option" type="button" data-answer="LACOSTE">LACOSTE</button>
 
    </div>
 
@@ -584,6 +622,15 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
 
    <button class="product-slot" type="button" data-product="3">
     <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="4">
+    span class="plus">+</span>
     <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
     <p data-en="Product photo coming soon<br>Price: to be added"
        data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
@@ -931,9 +978,73 @@ const collectionCoupon = document.getElementById("collectionCoupon");
 const collectionDiscountCode = document.getElementById("collectionDiscountCode");
 const collectionCopyCode = document.getElementById("collectionCopyCode");
 
+const gameImage = document.getElementById("gameImage");
+const gameImageLoading = document.getElementById("gameImageLoading");
+
 let selectedAnswer = "";
 let gameWinner = null;
 let gameBusy = false;
+
+/* LOAD DYNAMIC GAME IMAGE */
+
+async function loadGameSettings(){
+ try{
+  gameImageLoading.textContent =
+   currentLanguage === "en"
+    ? "LOADING GAME IMAGE..."
+    : "جارٍ تحميل صورة اللعبة...";
+
+  const response = await fetch(
+   SUPABASE_URL +
+   "/rest/v1/game_settings?id=eq.1&select=image_url",
+   {
+    method:"GET",
+    headers:{
+     "apikey":SUPABASE_ANON_KEY,
+     "Authorization":"Bearer "+SUPABASE_ANON_KEY,
+     "Accept":"application/json"
+    },
+    cache:"no-store"
+   }
+  );
+
+  if(!response.ok){
+   throw new Error("Could not load game image. Check Supabase permissions.");
+  }
+
+  const settings = await response.json();
+
+  if(!settings.length || !settings[0].image_url){
+   throw new Error("Game image is not configured.");
+  }
+
+  gameImage.onload = function(){
+   gameImage.style.display = "block";
+   gameImageLoading.style.display = "none";
+  };
+
+  gameImage.onerror = function(){
+   gameImage.style.display = "none";
+   gameImageLoading.style.display = "block";
+   gameImageLoading.textContent =
+    currentLanguage === "en"
+     ? "Unable to display game image."
+     : "تعذر عرض صورة اللعبة.";
+  };
+
+  gameImage.src = settings[0].image_url;
+
+ }catch(error){
+  console.error("Game image error:",error);
+
+  gameImage.style.display = "none";
+  gameImageLoading.style.display = "block";
+  gameImageLoading.textContent =
+   currentLanguage === "en"
+    ? "Game image could not be loaded."
+    : "تعذر تحميل صورة اللعبة.";
+ }
+}
 
 /* SELECT BRAND */
 
@@ -1158,8 +1269,11 @@ themeBtn.addEventListener("click",function(){
 
 updateTheme();
 updateLanguage();
+loadGameSettings();
 
 </script>
 
 </body>
 </html>
+
+     
