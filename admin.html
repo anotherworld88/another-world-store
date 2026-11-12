@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11100e">
+<title>ANOTHER WORLD | Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#11100e;color:#eee4d3;
+ font-family:Arial,sans-serif;padding:25px;
+}
+.container{max-width:1050px;margin:auto}
+h1,h2{font-family:Georgia,serif;letter-spacing:2px}
+h1{text-align:center;margin:25px 0}
+.subtitle{text-align:center;color:#cdb99a;font-size:12px;letter-spacing:3px}
+.panel{
+ background:#1e1a15;border:1px solid #554633;
+ padding:25px;margin:20px 0;
+}
+input{
+ display:block;width:100%;padding:14px;margin:12px 0;
+ background:#11100e;color:#eee4d3;
+ border:1px solid #554633;font-size:14px;
+}
+button{
+ padding:13px 20px;background:#cdb99a;
+ color:#17130f;border:0;font-weight:bold;
+ cursor:pointer;margin:5px 0;
+}
+button:disabled{opacity:.5}
+.primary{width:100%}
+.hidden{display:none!important}
+.message{color:#d98a78;font-size:13px;line-height:1.7}
+.stats{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:15px;
+}
+.stat{
+ padding:22px;background:#211c16;
+ border:1px solid #554633;text-align:center;
+}
+.stat strong{display:block;font-size:30px;margin-top:10px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:550px}
+th,td{
+ padding:13px;text-align:left;
+ border-bottom:1px solid #554633;font-size:12px;
+}
+th{color:#cdb99a;letter-spacing:1px}
+.muted{color:#cdb99a;font-size:12px}
+.topbar{
+ display:flex;justify-content:space-between;
+ align-items:center;gap:10px;flex-wrap:wrap;
+}
+.badge{color:#80d5a0;font-size:12px}
+footer{text-align:center;color:#cdb99a;font-size:11px;padding:30px}
+@media(max-width:500px){
+ body{padding:12px}
+ .panel{padding:16px}
+ .stats{gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="subtitle">ANOTHER WORLD — PRIVATE ACCESS</p>
+<h1>ADMIN PANEL</h1>
+
+<!-- LOGIN -->
+<div id="loginPanel" class="panel">
+<h2>ADMIN LOGIN</h2>
+<p class="muted">Sign in with your administrator account.</p>
+
+<form id="loginForm">
+<input id="email" type="email"
+ placeholder="Administrator email" required autocomplete="username">
+
+<input id="password" type="password"
+ placeholder="Password" required autocomplete="current-password">
+
+<button class="primary" id="loginButton" type="submit">
+SIGN IN
+</button>
+</form>
+
+<p id="loginMessage" class="message" aria-live="polite"></p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+<div class="panel topbar">
+<div>
+<h2>ANOTHER WORLD</h2>
+<p class="badge">ADMINISTRATOR VERIFIED</p>
+<p class="muted" id="adminEmail"></p>
+</div>
+<div>
+<button id="refreshButton">REFRESH DATA</button>
+<button id="logoutButton">LOG OUT</button>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat">
+PARTICIPANTS
+<strong id="participantCount">0</strong>
+</div>
+<div class="stat">
+WINNERS
+<strong id="winnerCount">0</strong>
+</div>
+</div>
+
+<div class="panel">
+<h2>GAME PARTICIPANTS</h2>
+<p class="muted">Latest game attempts</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>ANSWER</th>
+<th>CORRECT</th>
+<th>DATE</th>
+</tr>
+</thead>
+<tbody id="participantsBody"></tbody>
+</table>
+</div>
+<p id="participantsMessage" class="message"></p>
+</div>
+
+<div class="panel">
+<h2>GAME WINNERS</h2>
+<p class="muted">Winner records and discount codes</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>DISCOUNT CODE</th>
+<th>DISCOUNT</th>
+<th>DATE</th>
+</tr>
+</thead>
+<tbody id="winnersBody"></tbody>
+</table>
+</div>
+<p id="winnersMessage" class="message"></p>
+</div>
+
+</div>
+
+<footer>ANOTHER WORLD © 2026 — PRIVATE ADMINISTRATION</footer>
+</div>
+
+<script>
+const SUPABASE_URL =
+"https://nukiuulwmlbbfyzyntly.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_L6U6tQFbHLbdyqOPHa745g_iYEDK-tz";
+
+const db = window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY
+);
+
+const loginPanel = document.getElementById("loginPanel");
+const dashboard = document.getElementById("dashboard");
+const loginMessage = document.getElementById("loginMessage");
+
+function showError(element,message){
+ element.textContent = message;
+}
+
+function addCell(row,value){
+ const cell = document.createElement("td");
+ cell.textContent = value == null ? "—" : String(value);
+ row.appendChild(cell);
+}
+
+function formatDate(value){
+ if(!value) return "—";
+ return new Date(value).toLocaleString();
+}
+
+/* VERIFY ADMIN */
+async function verifyAdmin(){
+ const {data:{session},error} =
+ await db.auth.getSession();
+
+ if(error || !session){
+  loginPanel.classList.remove("hidden");
+  dashboard.classList.add("hidden");
+  return false;
+ }
+
+ const {data,isError} =
+ await db.rpc("is_admin");
+
+ if(isError){
+  await db.auth.signOut();
+  return false;
+ }
+
+ if(data !== true){
+  await db.auth.signOut();
+  loginPanel.classList.remove("hidden");
+  dashboard.classList.add("hidden");
+  showError(loginMessage,"Access denied. Admin only.");
+  return false;
+ }
+
+ loginPanel.classList.add("hidden");
+ dashboard.classList.remove("hidden");
+
+ document.getElementById("adminEmail").textContent =
+ session.user.email || "";
+
+ await loadDashboard();
+ return true;
+}
+
+/* LOAD PARTICIPANTS AND WINNERS */
+async function loadDashboard(){
+
+ const participantsBody =
+ document.getElementById("participantsBody");
+
+ const winnersBody =
+ document.getElementById("winnersBody");
+
+ participantsBody.replaceChildren();
+ winnersBody.replaceChildren();
+
+ document.getElementById("participantsMessage").textContent =
+ "Loading...";
+
+ document.getElementById("winnersMessage").textContent =
+ "Loading...";
+
+ const [participants,winners] = await Promise.all([
+  db.from("game_participants")
+   .select("*")
+   .order("created_at",{ascending:false})
+   .limit(100),
+
+  db.from("game_winners")
+   .select("*")
+   .order("created_at",{ascending:false})
+   .limit(100)
+ ]);
+
+ if(participants.error){
+  showError(
+   document.getElementById("participantsMessage"),
+   participants.error.message
+  );
+ }else{
+  document.getElementById("participantCount").textContent =
+   participants.data.length;
+
+  participants.data.forEach(item=>{
+   const row=document.createElement("tr");
+   addCell(row,item.player_name);
+   addCell(row,item.answer);
+   addCell(row,item.is_correct ? "YES" : "NO");
+   addCell(row,formatDate(item.created_at));
+   participantsBody.appendChild(row);
+  });
+
+  document.getElementById("participantsMessage").textContent =
+   participants.data.length ? "" : "No participants yet.";
+ }
+
+ if(winners.error){
+  showError(
+   document.getElementById("winnersMessage"),
+   winners.error.message
+  );
+ }else{
+  document.getElementById("winnerCount").textContent =
+   winners.data.length;
+
+  winners.data.forEach(item=>{
+   const row=document.createElement("tr");
+   addCell(row,item.player_name);
+   addCell(row,item.discount_code);
+   addCell(row,item.discount_percent+"%");
+   addCell(row,formatDate(item.created_at));
+   winnersBody.appendChild(row);
+  });
+
+  document.getElementById("winnersMessage").textContent =
+   winners.data.length ? "" : "No winners yet.";
+ }
+}
+
+/* LOGIN */
+document.getElementById("loginForm")
+.addEventListener("submit",async event=>{
+ event.preventDefault();
+
+ const button=document.getElementById("loginButton");
+ button.disabled=true;
+ button.textContent="CHECKING...";
+
+ loginMessage.textContent="";
+
+ try{
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value;
+
+  const {error}=await db.auth.signInWithPassword({
+   email,password
+  });
+
+  if(error) throw error;
+
+  const allowed=await verifyAdmin();
+
+  if(!allowed){
+   throw new Error("This account is not authorized as an administrator.");
+  }
+
+ }catch(error){
+  showError(loginMessage,error.message);
+ }finally{
+  button.disabled=false;
+  button.textContent="SIGN IN";
+ }
+});
+
+/* REFRESH */
+document.getElementById("refreshButton")
+.addEventListener("click",loadDashboard);
+
+/* LOGOUT */
+document.getElementById("logoutButton")
+.addEventListener("click",async()=>{
+ await db.auth.signOut();
+ dashboard.classList.add("hidden");
+ loginPanel.classList.remove("hidden");
+ document.getElementById("password").value="";
+ loginMessage.textContent="You have signed out.";
+});
+
+/* INITIAL CHECK */
+verifyAdmin();
+</script>
+</body>
+</html>
