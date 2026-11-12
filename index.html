@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -25,9 +26,11 @@ body.light-mode{
 }
 body{
  margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,Helvetica,sans-serif;transition:background .3s,color .3s;
+ font-family:Arial,Helvetica,sans-serif;
+ transition:background .3s,color .3s;
 }
 a{color:inherit}
+
 .site-header{
  position:sticky;top:0;z-index:10;display:flex;align-items:center;
  justify-content:space-between;gap:12px;
@@ -44,10 +47,13 @@ a{color:inherit}
 .header-actions{display:flex;align-items:center;gap:8px}
 .nav-link,.language-btn,.theme-btn{
  text-decoration:none;color:var(--text);font-size:11px;letter-spacing:1px;
- border:1px solid var(--border);padding:10px 12px;background:transparent;cursor:pointer;
+ border:1px solid var(--border);padding:10px 12px;
+ background:transparent;cursor:pointer;
 }
+
 .hero{
- min-height:570px;display:grid;place-items:center;padding:70px 20px;text-align:center;
+ min-height:570px;display:grid;place-items:center;padding:70px 20px;
+ text-align:center;
  background:linear-gradient(rgba(12,11,10,.72),rgba(12,11,10,.86)),
  url("photo-2.jpg") center 35%/cover no-repeat;
  border-bottom:1px solid var(--border);
@@ -65,33 +71,52 @@ body.light-mode .hero{
 .hero-copy{color:var(--muted);line-height:1.9;font-size:15px}
 .button{
  display:inline-block;margin-top:22px;padding:14px 23px;
- background:var(--button);color:var(--button-text);text-decoration:none;
- font-size:11px;font-weight:bold;letter-spacing:1.5px;
+ background:var(--button);color:var(--button-text);
+ text-decoration:none;font-size:11px;font-weight:bold;letter-spacing:1.5px;
 }
+
 .section{width:min(1100px,100%);margin:auto;padding:68px 20px}
-.section-heading{text-align:center;margin:0 0 12px;letter-spacing:3px;font-family:Georgia,serif}
-.section-intro{
- text-align:center;color:var(--muted);font-size:13px;line-height:1.8;
- margin:0 auto 30px;max-width:580px;
+.section-heading{
+ text-align:center;margin:0 0 12px;
+ letter-spacing:3px;font-family:Georgia,serif;
 }
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
+.section-intro{
+ text-align:center;color:var(--muted);font-size:13px;
+ line-height:1.8;margin:0 auto 30px;max-width:580px;
+}
+.about-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;
+}
 .about-grid img{
- width:100%;display:block;max-height:570px;object-fit:cover;
- border:1px solid var(--border);
+ width:100%;display:block;max-height:570px;
+ object-fit:cover;border:1px solid var(--border);
 }
 .about-note{padding:20px;text-align:left}
-.about-note h3{font-family:Georgia,serif;font-size:28px;line-height:1.2}
+.about-note h3{
+ font-family:Georgia,serif;font-size:28px;line-height:1.2;
+}
 .about-note p{color:var(--muted);line-height:1.9;font-size:14px}
-.products,.game-section{border-top:1px solid var(--border);background:var(--section)}
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+.products,.game-section{
+ border-top:1px solid var(--border);background:var(--section);
+}
+.product-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
 .product-slot{
  min-height:245px;padding:18px;border:1px dashed var(--border);
  display:flex;flex-direction:column;justify-content:center;align-items:center;
  text-align:center;background:var(--card);cursor:pointer;color:var(--text);
- font-family:inherit;width:100%;transition:transform .25s,border-color .25s,background .25s;
+ font-family:inherit;width:100%;
+ transition:transform .25s,border-color .25s,background .25s;
 }
-.product-slot:hover{transform:translateY(-5px);border-color:var(--button);background:var(--section)}
-.product-slot:focus-visible{outline:2px solid var(--button);outline-offset:4px}
+.product-slot:hover{
+ transform:translateY(-5px);border-color:var(--button);
+ background:var(--section);
+}
+.product-slot:focus-visible{
+ outline:2px solid var(--button);outline-offset:4px;
+}
 .plus{font-size:34px;color:var(--muted)}
 .product-slot h3{font-family:Georgia,serif;font-size:17px}
 .product-slot p{color:var(--muted);font-size:12px;line-height:1.7}
@@ -99,13 +124,15 @@ body.light-mode .hero{
 /* PRODUCT DETAILS WINDOW */
 .product-modal{
  position:fixed;inset:0;z-index:100;display:none;align-items:center;
- justify-content:center;padding:20px;background:rgba(0,0,0,.82);overflow-y:auto;
+ justify-content:center;padding:20px;background:rgba(0,0,0,.82);
+ overflow-y:auto;
 }
 .product-modal.active{display:flex}
 .modal-content{
  position:relative;width:min(480px,100%);max-height:92vh;overflow-y:auto;
- padding:35px 24px;background:var(--card);border:1px solid var(--border);
- text-align:center;animation:modalShow .25s ease;
+ padding:35px 24px;background:var(--card);
+ border:1px solid var(--border);text-align:center;
+ animation:modalShow .25s ease;
 }
 @keyframes modalShow{
  from{opacity:0;transform:translateY(15px)}
@@ -113,8 +140,8 @@ body.light-mode .hero{
 }
 .modal-close{
  position:absolute;top:10px;right:14px;width:36px;height:36px;
- border:1px solid var(--border);background:var(--card);color:var(--text);
- font-size:23px;cursor:pointer;z-index:2;
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);font-size:23px;cursor:pointer;z-index:2;
 }
 body[dir="rtl"] .modal-close{right:auto;left:14px}
 
@@ -127,19 +154,22 @@ body[dir="rtl"] .modal-close{right:auto;left:14px}
 .gallery-main img{width:100%;height:100%;object-fit:contain;display:block}
 .photo-placeholder{
  width:100%;height:100%;min-height:100px;
- display:flex;flex-direction:column;justify-content:center;align-items:center;
- gap:9px;background:var(--section);color:var(--muted);
+ display:flex;flex-direction:column;justify-content:center;
+ align-items:center;gap:9px;background:var(--section);color:var(--muted);
 }
 .photo-placeholder .placeholder-plus{font-size:40px;line-height:1}
 .photo-placeholder small{font-size:10px;letter-spacing:1.5px}
 .gallery-thumbnails{
- display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:8px;margin-bottom:24px;
 }
 .gallery-thumb{
  height:95px;padding:0;border:1px solid var(--border);
  background:var(--section);cursor:zoom-in;overflow:hidden;
 }
-.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery-thumb img{
+ width:100%;height:100%;object-fit:cover;display:block;
+}
 .gallery-thumb .photo-placeholder{min-height:0;gap:4px}
 .gallery-thumb .placeholder-plus{font-size:22px}
 .gallery-thumb .photo-placeholder small{font-size:8px;letter-spacing:.5px}
@@ -165,12 +195,14 @@ body[dir="rtl"] .modal-close{right:auto;left:14px}
 }
 .viewer-close{
  position:absolute;top:-42px;right:0;width:38px;height:38px;
- border:1px solid #9b896e;background:#211c16;color:#fff;
- font-size:25px;cursor:pointer;
+ border:1px solid #9b896e;background:#211c16;
+ color:#fff;font-size:25px;cursor:pointer;
 }
 body[dir="rtl"] .viewer-close{right:auto;left:0}
 
-.modal-content h2{font-family:Georgia,serif;font-size:27px;margin:15px 0}
+.modal-content h2{
+ font-family:Georgia,serif;font-size:27px;margin:15px 0;
+}
 .modal-description{color:var(--muted);line-height:1.8;font-size:13px}
 .modal-price{font-family:Georgia,serif;font-size:20px;margin:20px 0}
 .modal-whatsapp{
@@ -179,27 +211,96 @@ body[dir="rtl"] .viewer-close{right:auto;left:0}
  font-weight:bold;letter-spacing:1px;margin-top:10px;
 }
 
-/* GUESS THE BRAND */
+/* GUESS THE BRAND GAME */
 .game-box{
  max-width:650px;margin:auto;padding:30px 20px;
  border:1px solid var(--border);text-align:center;background:var(--card);
 }
-.game-title{font-family:Georgia,serif;font-size:clamp(30px,6vw,45px);letter-spacing:2px;margin:10px 0}
+.game-title{
+ font-family:Georgia,serif;font-size:clamp(30px,6vw,45px);
+ letter-spacing:2px;margin:10px 0;
+}
 .game-discount{color:var(--muted);font-size:23px;letter-spacing:3px;margin:15px 0}
 .game-description{color:var(--muted);font-size:13px;line-height:1.8}
-.brand-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}
+.brand-options{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0;
+}
 .brand-option{
- padding:17px 8px;border:1px solid var(--border);color:var(--text);
- font-weight:bold;letter-spacing:2px;background:var(--section);
+ padding:17px 8px;border:1px solid var(--border);
+ color:var(--text);font-weight:bold;letter-spacing:2px;
+ background:var(--section);cursor:pointer;font-family:inherit;
+ transition:.2s;
 }
-.coming-soon{
- display:block;background:var(--button);color:var(--button-text);
- padding:16px;margin-top:20px;font-family:Georgia,serif;
- font-size:22px;font-weight:bold;letter-spacing:3px;
+.brand-option:hover,.brand-option.selected{
+ border-color:var(--button);background:var(--contact);
 }
-.contact{text-align:center;background:var(--contact);border-top:1px solid var(--border)}
+.brand-option:focus-visible{
+ outline:2px solid var(--button);outline-offset:3px;
+}
+.game-name{
+ display:block;width:100%;max-width:350px;margin:20px auto 0;
+ padding:14px;background:var(--section);color:var(--text);
+ border:1px solid var(--border);font-size:14px;outline:none;
+ text-align:center;
+}
+.game-name:focus{border-color:var(--button)}
+.game-submit{
+ display:block;width:100%;max-width:350px;margin:15px auto;
+ padding:15px;border:0;background:var(--button);
+ color:var(--button-text);font-weight:bold;letter-spacing:2px;
+ cursor:pointer;transition:opacity .2s;
+}
+.game-submit:disabled{opacity:.6;cursor:wait}
+.game-message{
+ margin:18px auto;line-height:1.8;font-size:13px;
+ min-height:22px;
+}
+.winner-card{
+ display:none;margin:22px auto;padding:22px 14px;
+ max-width:400px;border:1px solid var(--button);
+ background:var(--section);
+}
+.winner-card.active{display:block}
+.winner-card h3{
+ font-family:Georgia,serif;letter-spacing:2px;
+}
+.winner-code{
+ display:block;padding:14px 8px;margin:15px 0;
+ background:var(--card);border:1px dashed var(--button);
+ font-size:18px;font-weight:bold;letter-spacing:1px;
+ overflow-wrap:anywhere;
+}
+.copy-code{
+ padding:12px 20px;background:var(--button);
+ color:var(--button-text);border:0;cursor:pointer;font-weight:bold;
+}
+.copy-code:disabled{opacity:.6}
+
+/* WINNER REWARD IN COLLECTION */
+.collection-coupon{
+ display:none;margin:20px auto 30px;padding:20px;
+ max-width:500px;border:1px solid var(--button);
+ text-align:center;background:var(--card);
+}
+.collection-coupon.active{display:block}
+.collection-coupon h3{
+ font-family:Georgia,serif;letter-spacing:2px;
+}
+.collection-coupon strong{
+ display:block;margin:15px;font-size:22px;
+ overflow-wrap:anywhere;
+}
+.collection-coupon p{color:var(--muted);line-height:1.8;font-size:13px}
+
+.contact{
+ text-align:center;background:var(--contact);
+ border-top:1px solid var(--border);
+}
 .contact p{color:var(--muted);line-height:1.8}
-footer{padding:25px 15px;text-align:center;color:var(--muted);font-size:11px;letter-spacing:1px}
+footer{
+ padding:25px 15px;text-align:center;
+ color:var(--muted);font-size:11px;letter-spacing:1px;
+}
 body[dir="rtl"] .about-note{text-align:right}
 body[dir="rtl"] .eyebrow{letter-spacing:1px}
 body[dir="rtl"] .game-title{letter-spacing:1px}
@@ -209,7 +310,9 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
  .brand-logo{width:40px;height:40px}
  .brand-name{font-size:11px;letter-spacing:1px}
  .brand-tag{font-size:7px;letter-spacing:1px}
- .nav-link,.language-btn,.theme-btn{padding:9px 7px;font-size:9px}
+ .nav-link,.language-btn,.theme-btn{
+  padding:9px 7px;font-size:9px;
+ }
  .header-actions{gap:5px}
  .hero{min-height:520px}
  .about-grid{grid-template-columns:1fr}
@@ -223,7 +326,9 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
 @media(max-width:380px){
  .brand{gap:6px}
  .brand-name{font-size:10px}
- .nav-link,.language-btn,.theme-btn{font-size:8px;padding:8px 5px}
+ .nav-link,.language-btn,.theme-btn{
+  font-size:8px;padding:8px 5px;
+ }
  .product-grid{grid-template-columns:1fr}
 }
 </style>
@@ -239,71 +344,280 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
    <p class="brand-tag">VINTAGE STREETWEAR</p>
   </div>
  </div>
+
  <div class="header-actions">
-  <a class="nav-link" href="#products" data-en="COLLECTION" data-ar="المجموعة">COLLECTION</a>
+  <a class="nav-link" href="#products"
+     data-en="COLLECTION" data-ar="المجموعة">COLLECTION</a>
   <button class="language-btn" id="languageBtn" type="button">AR العربية</button>
   <button class="theme-btn" id="themeBtn" type="button">🌙 DARK MODE</button>
  </div>
 </header>
 
 <main>
+
+<!-- HERO -->
 <section class="hero">
  <div class="hero-content">
-  <p class="eyebrow" data-en="RARE PIECES • VINTAGE • STREETWEAR" data-ar="قطع نادرة • ملابس فينتيج • ستريت وير">RARE PIECES • VINTAGE • STREETWEAR</p>
-  <h1 data-en="WELCOME TO<br>ANOTHER WORLD" data-ar="مرحباً بك في<br>عالم آخر">WELCOME TO<br>ANOTHER WORLD</h1>
-  <p class="hero-copy" data-en="Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces." data-ar="ليست مجرد ملابس، بل عالم مختلف.<br>اكتشف قطعاً مميزة من ملابس الفينتيج والستريت وير.">Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces.</p>
-  <a class="button" href="#products" data-en="EXPLORE COLLECTION" data-ar="اكتشف المجموعة">EXPLORE COLLECTION</a>
+  <p class="eyebrow"
+     data-en="RARE PIECES • VINTAGE • STREETWEAR"
+     data-ar="قطع نادرة • ملابس فينتيج • ستريت وير">
+   RARE PIECES • VINTAGE • STREETWEAR
+  </p>
+
+  <h1 data-en="WELCOME TO<br>ANOTHER WORLD"
+      data-ar="مرحباً بك في<br>عالم آخر">
+   WELCOME TO<br>ANOTHER WORLD
+  </h1>
+
+  <p class="hero-copy"
+     data-en="Not just clothes. A different world.<br>Discover unique vintage and streetwear pieces."
+     data-ar="ليست مجرد ملابس، بل عالم مختلف.<br>اكتشف قطعاً مميزة من ملابس الفينتيج والستريت وير.">
+   Not just clothes. A different world.<br>
+   Discover unique vintage and streetwear pieces.
+  </p>
+
+  <a class="button" href="#products"
+     data-en="EXPLORE COLLECTION"
+     data-ar="اكتشف المجموعة">
+   EXPLORE COLLECTION
+  </a>
  </div>
 </section>
 
+<!-- ABOUT -->
 <section class="section" id="about">
  <h2 class="section-heading" data-en="OUR WORLD" data-ar="عالمنا">OUR WORLD</h2>
- <p class="section-intro" data-en="Different pieces. Same world. A carefully selected collection for people who like their own style." data-ar="قطع مختلفة، وعالم واحد. مجموعة مختارة بعناية للأشخاص الذين يحبون أسلوبهم الخاص.">Different pieces. Same world. A carefully selected collection for people who like their own style.</p>
+
+ <p class="section-intro"
+    data-en="Different pieces. Same world. A carefully selected collection for people who like their own style."
+    data-ar="قطع مختلفة، وعالم واحد. مجموعة مختارة بعناية للأشخاص الذين يحبون أسلوبهم الخاص.">
+  Different pieces. Same world. A carefully selected collection for people who like their own style.
+ </p>
+
  <div class="about-grid">
   <img src="photo-1.jpg" alt="Another World streetwear portrait">
+
   <div class="about-note">
-   <p class="eyebrow" data-en="THE ANOTHER WORLD IDENTITY" data-ar="هوية عالم آخر">THE ANOTHER WORLD IDENTITY</p>
-   <h3 data-en="NOT MADE<br>TO FIT IN." data-ar="لسنا هنا<br>لنشبه الآخرين.">NOT MADE<br>TO FIT IN.</h3>
-   <p data-en="We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition." data-ar="نبحث عن قطع مميزة من ملابس الفينتيج والستريت وير. نختار كل قطعة بعناية حسب طابعها وأسلوبها وحالتها.">We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.</p>
+   <p class="eyebrow"
+      data-en="THE ANOTHER WORLD IDENTITY"
+      data-ar="هوية عالم آخر">THE ANOTHER WORLD IDENTITY</p>
+
+   <h3 data-en="NOT MADE<br>TO FIT IN."
+       data-ar="لسنا هنا<br>لنشبه الآخرين.">
+    NOT MADE<br>TO FIT IN.
+   </h3>
+
+   <p data-en="We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition."
+      data-ar="نبحث عن قطع مميزة من ملابس الفينتيج والستريت وير. نختار كل قطعة بعناية حسب طابعها وأسلوبها وحالتها.">
+    We look for distinctive vintage and streetwear pieces. Every item is selected for its character, style and condition.
+   </p>
   </div>
+
   <div class="about-note">
-   <p class="eyebrow" data-en="A DIFFERENT POINT OF VIEW" data-ar="نظرة مختلفة">A DIFFERENT POINT OF VIEW</p>
-   <h3 data-en="FIND YOUR<br>OWN PIECE." data-ar="اعثر على<br>قطعتك الخاصة.">FIND YOUR<br>OWN PIECE.</h3>
-   <p data-en="Explore the collection and contact us directly when you find something you like." data-ar="اكتشف مجموعتنا وتواصل معنا مباشرة عندما تجد قطعة تعجبك.">Explore the collection and contact us directly when you find something you like.</p>
+   <p class="eyebrow"
+      data-en="A DIFFERENT POINT OF VIEW"
+      data-ar="نظرة مختلفة">A DIFFERENT POINT OF VIEW</p>
+
+   <h3 data-en="FIND YOUR<br>OWN PIECE."
+       data-ar="اعثر على<br>قطعتك الخاصة.">
+    FIND YOUR<br>OWN PIECE.
+   </h3>
+
+   <p data-en="Explore the collection and contact us directly when you find something you like."
+      data-ar="اكتشف مجموعتنا وتواصل معنا مباشرة عندما تجد قطعة تعجبك.">
+    Explore the collection and contact us directly when you find something you like.
+   </p>
   </div>
+
   <img src="photo-2.jpg" alt="Another World streetwear outfit">
  </div>
 </section>
 
+<!-- GUESS THE BRAND -->
 <section class="game-section" id="game">
  <div class="section">
   <div class="game-box">
+
    <p class="eyebrow">ANOTHER WORLD EXCLUSIVE</p>
+
    <h2 class="game-title">GUESS THE BRAND</h2>
-   <h3 class="game-discount" data-en="WIN DISCOUNT" data-ar="اربح خصماً">WIN DISCOUNT</h3>
-   <p class="game-description" data-en="Choose the correct brand and get rewarded." data-ar="اختر العلامة التجارية الصحيحة واحصل على مكافأتك.">Choose the correct brand and get rewarded.</p>
+
+   <h3 class="game-discount"
+       data-en="WIN 15% DISCOUNT"
+       data-ar="اربح خصماً بنسبة 15%">
+    WIN 15% DISCOUNT
+   </h3>
+
+   <p class="game-description"
+      data-en="Enter your name, choose the correct brand and win a 15% discount!"
+      data-ar="أدخل اسمك واختر العلامة التجارية الصحيحة واربح خصماً بنسبة 15%!">
+    Enter your name, choose the correct brand and win a 15% discount!
+   </p>
+
+   <input
+    type="text"
+    id="gameName"
+    class="game-name"
+    maxlength="60"
+    placeholder="YOUR NAME"
+    autocomplete="name"
+    aria-label="Your name"
+   >
+
    <div class="brand-options">
-    <div class="brand-option">NIKE</div><div class="brand-option">ADIDAS</div>
-    <div class="brand-option">PUMA</div><div class="brand-option">REEBOK</div>
-    <div class="brand-option">CHAMPION</div><div class="brand-option">FILA</div>
+
+    <button class="brand-option" type="button" data-answer="NIKE">NIKE</button>
+
+    <button class="brand-option" type="button" data-answer="ADIDAS">ADIDAS</button>
+
+    <button class="brand-option" type="button" data-answer="PUMA">PUMA</button>
+
+    <button class="brand-option" type="button" data-answer="REEBOK">REEBOK</button>
+
+    <button class="brand-option" type="button" data-answer="CHAMPION">CHAMPION</button>
+
+    <button class="brand-option" type="button" data-answer="FILA">FILA</button>
+
    </div>
-   <div class="coming-soon" data-en="COMING SOON" data-ar="قريباً">COMING SOON</div>
-   <p class="game-description" data-en="STAY TUNED FOR SOMETHING SPECIAL." data-ar="ترقبوا شيئاً مميزاً.">STAY TUNED FOR SOMETHING SPECIAL.</p>
+
+   <button id="submitGame" class="game-submit" type="button"
+           data-en="SUBMIT ANSWER" data-ar="إرسال الإجابة">
+    SUBMIT ANSWER
+   </button>
+
+   <p id="gameMessage" class="game-message" aria-live="polite"></p>
+
+   <!-- WINNER CARD -->
+   <div id="winnerCard" class="winner-card">
+    <h3 data-en="CONGRATULATIONS!"
+        data-ar="تهانينا!">
+     CONGRATULATIONS!
+    </h3>
+
+    <p data-en="YOU WON A 15% DISCOUNT!"
+       data-ar="لقد ربحت خصماً بنسبة 15%!">
+     YOU WON A 15% DISCOUNT!
+    </p>
+
+    <span id="winnerCode" class="winner-code"></span>
+
+    <button id="copyWinnerCode" class="copy-code" type="button"
+            data-en="COPY DISCOUNT CODE"
+            data-ar="انسخ كود الخصم">
+     COPY DISCOUNT CODE
+    </button>
+   </div>
+
+   <p class="game-description"
+      data-en="STAY TUNED FOR SOMETHING SPECIAL."
+      data-ar="ترقبوا شيئاً مميزاً.">
+    STAY TUNED FOR SOMETHING SPECIAL.
+   </p>
+
   </div>
  </div>
 </section>
 
+<!-- COLLECTION -->
 <section class="products" id="products">
  <div class="section">
-  <h2 class="section-heading" data-en="OUR COLLECTION" data-ar="مجموعتنا">OUR COLLECTION</h2>
-  <p class="section-intro" data-en="New pieces will appear here. Each product space is ready for its photo, name and price." data-ar="ستظهر القطع الجديدة هنا. كل مكان جاهز لصورة المنتج واسمه وسعره.">New pieces will appear here. Each product space is ready for its photo, name and price.</p>
+
+  <h2 class="section-heading"
+      data-en="OUR COLLECTION"
+      data-ar="مجموعتنا">
+   OUR COLLECTION
+  </h2>
+
+  <p class="section-intro"
+     data-en="New pieces will appear here. Each product space is ready for its photo, name and price."
+     data-ar="ستظهر القطع الجديدة هنا. كل مكان جاهز لصورة المنتج واسمه وسعره.">
+   New pieces will appear here. Each product space is ready for its photo, name and price.
+  </p>
+
+  <!-- WINNER DISCOUNT -->
+  <div id="collectionCoupon" class="collection-coupon">
+
+   <h3 data-en="YOUR WINNING REWARD"
+       data-ar="مكافأتك">
+    YOUR WINNING REWARD
+   </h3>
+
+   <p data-en="YOU HAVE UNLOCKED 15% OFF!"
+      data-ar="لقد حصلت على خصم بنسبة 15%!">
+    YOU HAVE UNLOCKED 15% OFF!
+   </p>
+
+   <strong id="collectionDiscountCode"></strong>
+
+   <p data-en="Use your personal discount code when ordering."
+      data-ar="استخدم كود الخصم الشخصي عند الطلب.">
+    Use your personal discount code when ordering.
+   </p>
+
+   <button id="collectionCopyCode" class="copy-code" type="button"
+           data-en="COPY MY CODE"
+           data-ar="انسخ الكود">
+    COPY MY CODE
+   </button>
+
+  </div>
+
   <div class="product-grid">
-   <button class="product-slot" type="button" data-product="1"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
-   <button class="product-slot" type="button" data-product="2"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
-   <button class="product-slot" type="button" data-product="3"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
-   <button class="product-slot" type="button" data-product="4"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
-   <button class="product-slot" type="button" data-product="5"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
-   <button class="product-slot" type="button" data-product="6"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></button>
+
+   <button class="product-slot" type="button" data-product="1">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="2">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="3">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="4">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="5">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="6">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added"
+       data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">
+     Product photo coming soon<br>Price: to be added
+    </p>
+   </button>
+
   </div>
  </div>
 </section>
@@ -311,61 +625,118 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
 <!-- PRODUCT DETAILS WINDOW -->
 <div class="product-modal" id="productModal" aria-hidden="true">
  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+
+  <button class="modal-close" id="modalClose" type="button"
+          aria-label="Close">×</button>
 
   <div class="product-gallery">
-   <button class="gallery-main" id="galleryMain" type="button" aria-label="Enlarge main product photo">
-    <div class="photo-placeholder"><span class="placeholder-plus">+</span><small>PRODUCT PHOTO COMING SOON</small></div>
+   <button class="gallery-main" id="galleryMain" type="button"
+           aria-label="Enlarge main product photo">
+    <div class="photo-placeholder">
+     <span class="placeholder-plus">+</span>
+     <small>PRODUCT PHOTO COMING SOON</small>
+    </div>
    </button>
    <div class="gallery-thumbnails" id="galleryThumbnails"></div>
   </div>
 
-  <p class="eyebrow" data-en="ANOTHER WORLD COLLECTION" data-ar="مجموعة عالم آخر">ANOTHER WORLD COLLECTION</p>
-  <h2 id="modalTitle" data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h2>
-  <p class="modal-description" data-en="This product will be available soon. Stay tuned for its photo and full details." data-ar="هذا المنتج سيكون متوفراً قريباً. ترقبوا صورته وجميع تفاصيله.">This product will be available soon. Stay tuned for its photo and full details.</p>
-  <div class="modal-price" data-en="PRICE: COMING SOON" data-ar="السعر: قريباً">PRICE: COMING SOON</div>
-  <a class="modal-whatsapp" href="https://wa.me/213791237069" target="_blank" rel="noopener" data-en="ASK ABOUT THIS PIECE" data-ar="استفسر عن هذه القطعة">ASK ABOUT THIS PIECE</a>
+  <p class="eyebrow"
+     data-en="ANOTHER WORLD COLLECTION"
+     data-ar="مجموعة عالم آخر">ANOTHER WORLD COLLECTION</p>
+
+  <h2 id="modalTitle"
+      data-en="YOUR NEXT PIECE"
+      data-ar="قطعتك القادمة">YOUR NEXT PIECE</h2>
+
+  <p class="modal-description"
+     data-en="This product will be available soon. Stay tuned for its photo and full details."
+     data-ar="هذا المنتج سيكون متوفراً قريباً. ترقبوا صورته وجميع تفاصيله.">
+   This product will be available soon. Stay tuned for its photo and full details.
+  </p>
+
+  <div class="modal-price"
+       data-en="PRICE: COMING SOON"
+       data-ar="السعر: قريباً">PRICE: COMING SOON</div>
+
+  <a class="modal-whatsapp"
+     href="https://wa.me/213791237069"
+     target="_blank"
+     rel="noopener"
+     data-en="ASK ABOUT THIS PIECE"
+     data-ar="استفسر عن هذه القطعة">
+   ASK ABOUT THIS PIECE
+  </a>
+
  </div>
 </div>
 
 <!-- FULL SCREEN IMAGE VIEWER -->
 <div class="image-viewer" id="imageViewer" aria-hidden="true">
  <div class="viewer-content" id="viewerContent">
-  <button class="viewer-close" id="viewerClose" type="button" aria-label="Close enlarged photo">×</button>
-  <div class="photo-placeholder"><span class="placeholder-plus">+</span><small>PRODUCT PHOTO COMING SOON</small></div>
+  <button class="viewer-close" id="viewerClose" type="button"
+          aria-label="Close enlarged photo">×</button>
+  <div class="photo-placeholder">
+   <span class="placeholder-plus">+</span>
+   <small>PRODUCT PHOTO COMING SOON</small>
+  </div>
  </div>
 </div>
 
+<!-- CONTACT -->
 <section class="section contact" id="contact">
- <h2 class="section-heading" data-en="LET'S TALK" data-ar="لنتحدث">LET'S TALK</h2>
- <p data-en="Found a piece you like? Contact us on WhatsApp." data-ar="وجدت قطعة أعجبتك؟ تواصل معنا عبر واتساب.">Found a piece you like? Contact us on WhatsApp.</p>
- <a class="button" href="https://wa.me/213791237069" data-en="CONTACT ON WHATSAPP" data-ar="تواصل عبر واتساب">CONTACT ON WHATSAPP</a>
- <p><a href="https://www.instagram.com/another_w00rld/" target="_blank" rel="noopener" data-en="FOLLOW US ON INSTAGRAM" data-ar="تابعنا على إنستغرام">FOLLOW US ON INSTAGRAM</a></p>
+ <h2 class="section-heading"
+     data-en="LET'S TALK"
+     data-ar="لنتحدث">LET'S TALK</h2>
+
+ <p data-en="Found a piece you like? Contact us on WhatsApp."
+    data-ar="وجدت قطعة أعجبتك؟ تواصل معنا عبر واتساب.">
+  Found a piece you like? Contact us on WhatsApp.
+ </p>
+
+ <a class="button"
+    href="https://wa.me/213791237069"
+    data-en="CONTACT ON WHATSAPP"
+    data-ar="تواصل عبر واتساب">CONTACT ON WHATSAPP</a>
+
+ <p>
+  <a href="https://www.instagram.com/another_w00rld/"
+     target="_blank" rel="noopener"
+     data-en="FOLLOW US ON INSTAGRAM"
+     data-ar="تابعنا على إنستغرام">FOLLOW US ON INSTAGRAM</a>
+ </p>
 </section>
 </main>
 
-<footer data-en="ANOTHER WORLD © 2026 — VINTAGE STREETWEAR" data-ar="عالم آخر © 2026 — ملابس فينتيج">ANOTHER WORLD © 2026 — VINTAGE STREETWEAR</footer>
+<footer
+ data-en="ANOTHER WORLD © 2026 — VINTAGE STREETWEAR"
+ data-ar="عالم آخر © 2026 — ملابس فينتيج">
+ ANOTHER WORLD © 2026 — VINTAGE STREETWEAR
+</footer>
 
 <script>
-const languageBtn=document.getElementById("languageBtn");
-const themeBtn=document.getElementById("themeBtn");
-const productModal=document.getElementById("productModal");
-const modalClose=document.getElementById("modalClose");
-const imageViewer=document.getElementById("imageViewer");
-const viewerContent=document.getElementById("viewerContent");
-const viewerClose=document.getElementById("viewerClose");
-const galleryMain=document.getElementById("galleryMain");
-const galleryThumbnails=document.getElementById("galleryThumbnails");
 
-let currentLanguage=localStorage.getItem("aw-language")||"en";
-let isLight=localStorage.getItem("aw-theme")==="light";
-let currentProduct=1;
+/* GENERAL ELEMENTS */
 
-/*
-  صور كل منتج توضع داخل مجلد products.
-  أسماء الصور موضحة أسفل الكود.
-*/
-const photoNames=[
+const languageBtn = document.getElementById("languageBtn");
+const themeBtn = document.getElementById("themeBtn");
+
+const productModal = document.getElementById("productModal");
+const modalClose = document.getElementById("modalClose");
+
+const imageViewer = document.getElementById("imageViewer");
+const viewerContent = document.getElementById("viewerContent");
+const viewerClose = document.getElementById("viewerClose");
+
+const galleryMain = document.getElementById("galleryMain");
+const galleryThumbnails = document.getElementById("galleryThumbnails");
+
+let currentLanguage = localStorage.getItem("aw-language") || "en";
+let isLight = localStorage.getItem("aw-theme") === "light";
+let currentProduct = 1;
+
+/* PRODUCT GALLERY */
+
+const photoNames = [
  {key:"front",en:"FRONT VIEW",ar:"الصورة الأمامية"},
  {key:"back",en:"BACK VIEW",ar:"الصورة الخلفية"},
  {key:"side",en:"SIDE VIEW",ar:"الصورة الجانبية"},
@@ -377,139 +748,160 @@ function photoPath(product,key){
 }
 
 function makePlaceholder(label){
- const box=document.createElement("div");
- box.className="photo-placeholder";
- const plus=document.createElement("span");
- plus.className="placeholder-plus";
- plus.textContent="+";
- const small=document.createElement("small");
- small.textContent=label;
+ const box = document.createElement("div");
+ box.className = "photo-placeholder";
+
+ const plus = document.createElement("span");
+ plus.className = "placeholder-plus";
+ plus.textContent = "+";
+
+ const small = document.createElement("small");
+ small.textContent = label;
+
  box.append(plus,small);
  return box;
 }
 
 function makePhoto(product,photo){
- const img=document.createElement("img");
- img.src=photoPath(product,photo.key);
- img.alt=photo.en;
- img.onerror=function(){
-  
-  const placeholder=makePlaceholder(
-   currentLanguage==="ar"?photo.ar:photo.en
-  );
-  img.replaceWith(placeholder);
+ const img = document.createElement("img");
+ img.src = photoPath(product,photo.key);
+ img.alt = photo.en;
+
+ img.onerror = function(){
+  img.replaceWith(makePlaceholder(
+   currentLanguage === "ar" ? photo.ar : photo.en
+  ));
  };
+
  return img;
 }
 
 function openViewer(product,photo){
- viewerContent.querySelectorAll("img,.photo-placeholder").forEach(el=>el.remove());
+ viewerContent.querySelectorAll("img,.photo-placeholder")
+  .forEach(el => el.remove());
 
- const img=document.createElement("img");
- img.src=photoPath(product,photo.key);
- img.alt=photo.en;
- img.onerror=function(){
+ const img = document.createElement("img");
+ img.src = photoPath(product,photo.key);
+ img.alt = photo.en;
+
+ img.onerror = function(){
   img.replaceWith(makePlaceholder(
-   currentLanguage==="ar"?photo.ar:photo.en
+   currentLanguage === "ar" ? photo.ar : photo.en
   ));
  };
- viewerContent.appendChild(img);
 
+ viewerContent.appendChild(img);
  imageViewer.classList.add("active");
  imageViewer.setAttribute("aria-hidden","false");
+ document.body.style.overflow = "hidden";
  viewerClose.focus();
 }
 
 function loadGallery(product){
- currentProduct=product;
- galleryMain.innerHTML="";
- galleryMain.appendChild(makePhoto(product,photoNames[0]));
- galleryMain.onclick=()=>openViewer(product,photoNames[0]);
+ currentProduct = product;
 
- galleryThumbnails.innerHTML="";
+ galleryMain.innerHTML = "";
+ galleryMain.appendChild(makePhoto(product,photoNames[0]));
+ galleryMain.onclick = () => openViewer(product,photoNames[0]);
+
+ galleryThumbnails.innerHTML = "";
 
  photoNames.forEach(function(photo){
-  const button=document.createElement("button");
-  button.type="button";
-  button.className="gallery-thumb";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "gallery-thumb";
   button.setAttribute("aria-label",photo.en+" - enlarge photo");
   button.appendChild(makePhoto(product,photo));
-  button.addEventListener("click",()=>openViewer(product,photo));
+  button.addEventListener("click",() => openViewer(product,photo));
   galleryThumbnails.appendChild(button);
  });
 }
 
 /* LANGUAGE */
+
 function updateLanguage(){
- document.documentElement.lang=currentLanguage;
- document.body.dir=currentLanguage==="ar"?"rtl":"ltr";
+ document.documentElement.lang = currentLanguage;
+ document.body.dir = currentLanguage === "ar" ? "rtl" : "ltr";
 
  document.querySelectorAll("[data-en][data-ar]").forEach(function(element){
-  element.innerHTML=element.dataset[currentLanguage];
+  element.innerHTML = element.dataset[currentLanguage];
  });
 
- languageBtn.textContent=currentLanguage==="en"?"AR العربية":"EN English";
+ languageBtn.textContent =
+  currentLanguage === "en" ? "AR العربية" : "EN English";
+
+ document.getElementById("gameName").placeholder =
+  currentLanguage === "en" ? "YOUR NAME" : "أدخل اسمك";
+
  updateThemeButton();
 
  if(productModal.classList.contains("active")){
   loadGallery(currentProduct);
  }
+
+ if(gameWinner){
+  showWinner(gameWinner,false);
+ }
 }
 
 function updateThemeButton(){
- if(isLight){
-  themeBtn.textContent=currentLanguage==="en"?"🌙 DARK MODE":"🌙 الوضع الداكن";
- }else{
-  themeBtn.textContent=currentLanguage==="en"?"☀️ LIGHT MODE":"☀️ الوضع الفاتح";
- }
+ themeBtn.textContent = isLight
+  ? (currentLanguage === "en" ? "🌙 DARK MODE" : "🌙 الوضع الداكن")
+  : (currentLanguage === "en" ? "☀️ LIGHT MODE" : "☀️ الوضع الفاتح");
 }
 
 function updateTheme(){
  document.body.classList.toggle("light-mode",isLight);
  document.querySelector('meta[name="theme-color"]')
-  .setAttribute("content",isLight?"#f3ede2":"#11100e");
- localStorage.setItem("aw-theme",isLight?"light":"dark");
+  .setAttribute("content",isLight ? "#f3ede2" : "#11100e");
+ localStorage.setItem("aw-theme",isLight ? "light" : "dark");
  updateThemeButton();
 }
 
-/* OPEN PRODUCT DETAILS */
+/* PRODUCT DETAILS */
+
 document.querySelectorAll(".product-slot").forEach(function(slot){
  slot.addEventListener("click",function(){
-  const product=Number(slot.dataset.product);
+  const product = Number(slot.dataset.product);
   loadGallery(product);
   productModal.classList.add("active");
   productModal.setAttribute("aria-hidden","false");
-  document.body.style.overflow="hidden";
+  document.body.style.overflow = "hidden";
   modalClose.focus();
  });
 });
 
-/* CLOSE PRODUCT DETAILS */
 function closeProductModal(){
  productModal.classList.remove("active");
  productModal.setAttribute("aria-hidden","true");
- document.body.style.overflow="";
+ document.body.style.overflow = "";
 }
+
 modalClose.addEventListener("click",closeProductModal);
 
 productModal.addEventListener("click",function(event){
- if(event.target===productModal)closeProductModal();
+ if(event.target === productModal) closeProductModal();
 });
 
-/* CLOSE ENLARGED PHOTO */
+/* IMAGE VIEWER */
+
 function closeViewer(){
  imageViewer.classList.remove("active");
  imageViewer.setAttribute("aria-hidden","true");
+
+ if(!productModal.classList.contains("active")){
+  document.body.style.overflow = "";
+ }
 }
+
 viewerClose.addEventListener("click",closeViewer);
 
 imageViewer.addEventListener("click",function(event){
- if(event.target===imageViewer)closeViewer();
+ if(event.target === imageViewer) closeViewer();
 });
 
-/* KEYBOARD ESCAPE */
 document.addEventListener("keydown",function(event){
- if(event.key==="Escape"){
+ if(event.key === "Escape"){
   if(imageViewer.classList.contains("active")){
    closeViewer();
   }else if(productModal.classList.contains("active")){
@@ -518,22 +910,256 @@ document.addEventListener("keydown",function(event){
  }
 });
 
+/* SUPABASE GAME */
+
+const SUPABASE_URL =
+ "https://nukiuulwmlbbfyzyntly.supabase.co";
+
+const SUPABASE_ANON_KEY =
+ "sb_publishable_L6U6tQFbHLbdyqOPHa745g_iYEDK-tz";
+
+const GAME_FUNCTION =
+ SUPABASE_URL + "/functions/v1/submit-game-attempt";
+
+const gameName = document.getElementById("gameName");
+const submitGame = document.getElementById("submitGame");
+const gameMessage = document.getElementById("gameMessage");
+const winnerCard = document.getElementById("winnerCard");
+const winnerCode = document.getElementById("winnerCode");
+const copyWinnerCode = document.getElementById("copyWinnerCode");
+const collectionCoupon = document.getElementById("collectionCoupon");
+const collectionDiscountCode = document.getElementById("collectionDiscountCode");
+const collectionCopyCode = document.getElementById("collectionCopyCode");
+
+let selectedAnswer = "";
+let gameWinner = null;
+let gameBusy = false;
+
+/* SELECT BRAND */
+
+document.querySelectorAll(".brand-option").forEach(button => {
+ button.addEventListener("click",() => {
+  if(gameBusy || gameWinner) return;
+
+  document.querySelectorAll(".brand-option").forEach(option => {
+   option.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+  selectedAnswer = button.dataset.answer;
+  gameMessage.textContent = "";
+ });
+});
+
+/* DISPLAY WINNER */
+
+function showWinner(data,scrollToWinner=false){
+ gameWinner = data;
+
+ winnerCode.textContent = data.discount_code;
+ collectionDiscountCode.textContent = data.discount_code;
+
+ winnerCard.classList.add("active");
+ collectionCoupon.classList.add("active");
+
+ submitGame.disabled = true;
+
+ document.querySelectorAll(".brand-option").forEach(button => {
+  button.disabled = true;
+ });
+
+ gameMessage.style.color = "#65c78b";
+ gameMessage.textContent =
+  currentLanguage === "en"
+   ? "Congratulations! You won a 15% discount!"
+   : "تهانينا! لقد ربحت خصماً بنسبة 15%!";
+
+ gameName.value = data.name || gameName.value;
+ gameName.disabled = true;
+
+ if(scrollToWinner){
+  winnerCard.scrollIntoView({
+   behavior:"smooth",
+   block:"center"
+  });
+ }
+}
+
+/* SUBMIT ANSWER */
+
+submitGame.addEventListener("click",async function(){
+ if(gameBusy || gameWinner) return;
+
+ const name = gameName.value.trim();
+
+ if(!name){
+  gameMessage.style.color = "#d98a78";
+  gameMessage.textContent =
+   currentLanguage === "en" ? "Please enter your name." : "يرجى إدخال اسمك.";
+  gameName.focus();
+  return;
+ }
+
+ if(!selectedAnswer){
+  gameMessage.style.color = "#d98a78";
+  gameMessage.textContent =
+   currentLanguage === "en" ? "Please select a brand." : "يرجى اختيار علامة تجارية.";
+  return;
+ }
+
+ gameBusy = true;
+ submitGame.disabled = true;
+ submitGame.textContent = currentLanguage === "en" ? "CHECKING..." : "جارٍ التحقق...";
+
+ gameMessage.style.color = "var(--muted)";
+ gameMessage.textContent =
+  currentLanguage === "en" ? "Checking your answer..." : "جارٍ التحقق من إجابتك...";
+
+ try{
+  const response = await fetch(GAME_FUNCTION,{
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json",
+    "apikey":SUPABASE_ANON_KEY,
+    "Authorization":"Bearer "+SUPABASE_ANON_KEY
+   },
+   body:JSON.stringify({
+    name:name,
+    answer:selectedAnswer
+   })
+  });
+
+  const data = await response.json();
+
+  if(!response.ok || !data.success){
+   throw new Error(data.message || "Unable to submit your answer.");
+  }
+
+  if(data.is_correct === true){
+   if(!data.discount_code || Number(data.discount_percent) !== 15){
+    throw new Error("Discount information is incomplete.");
+   }
+
+   gameWinner = {
+    name:name,
+    discount_code:data.discount_code,
+    discount_percent:15
+   };
+
+   localStorage.setItem("aw-game-winner",JSON.stringify(gameWinner));
+   showWinner(gameWinner,true);
+
+  }else{
+   gameMessage.style.color = "#d98a78";
+   gameMessage.textContent =
+    currentLanguage === "en"
+     ? (data.message || "Wrong answer. Try again!")
+     : "إجابة خاطئة! حاول مرة أخرى.";
+
+   document.querySelectorAll(".brand-option").forEach(button => {
+    button.classList.remove("selected");
+   });
+
+   selectedAnswer = "";
+  }
+
+ }catch(error){
+  console.error("Game error:",error);
+  gameMessage.style.color = "#d98a78";
+  gameMessage.textContent = error.message ||
+   (currentLanguage === "en"
+    ? "Connection error. Please try again."
+    : "حدث خطأ في الاتصال. حاول مرة أخرى.");
+
+ }finally{
+  gameBusy = false;
+
+  if(!gameWinner){
+   submitGame.disabled = false;
+   submitGame.textContent =
+    currentLanguage === "en" ? "SUBMIT ANSWER" : "إرسال الإجابة";
+  }
+ }
+});
+
+/* COPY DISCOUNT CODE */
+
+async function copyDiscountCode(button){
+ if(!gameWinner || !gameWinner.discount_code) return;
+
+ const code = gameWinner.discount_code;
+
+ try{
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(code);
+  }else{
+   const temp = document.createElement("textarea");
+   temp.value = code;
+   temp.style.position = "fixed";
+   temp.style.opacity = "0";
+   document.body.appendChild(temp);
+   temp.select();
+
+   const copied = document.execCommand("copy");
+   temp.remove();
+
+   if(!copied) throw new Error("Copy failed");
+  }
+
+  button.textContent = currentLanguage === "en" ? "COPIED!" : "تم النسخ!";
+
+ }catch(error){
+  button.textContent = code;
+ }
+}
+
+copyWinnerCode.addEventListener("click",function(){
+ copyDiscountCode(copyWinnerCode);
+});
+
+collectionCopyCode.addEventListener("click",function(){
+ copyDiscountCode(collectionCopyCode);
+});
+
+/* RESTORE SAVED WINNER */
+
+try{
+ const savedWinner = JSON.parse(
+  localStorage.getItem("aw-game-winner") || "null"
+ );
+
+ if(
+  savedWinner &&
+  typeof savedWinner.discount_code === "string" &&
+  savedWinner.discount_code.length > 0 &&
+  Number(savedWinner.discount_percent) === 15
+ ){
+  showWinner(savedWinner,false);
+ }
+
+}catch(error){
+ localStorage.removeItem("aw-game-winner");
+}
+
 /* LANGUAGE AND THEME BUTTONS */
+
 languageBtn.addEventListener("click",function(){
- currentLanguage=currentLanguage==="en"?"ar":"en";
+ currentLanguage = currentLanguage === "en" ? "ar" : "en";
  localStorage.setItem("aw-language",currentLanguage);
  updateLanguage();
 });
 
 themeBtn.addEventListener("click",function(){
- isLight=!isLight;
+ isLight = !isLight;
  updateTheme();
 });
 
+/* INITIALIZE */
+
 updateTheme();
 updateLanguage();
+
 </script>
 
 </body>
 </html>
-
