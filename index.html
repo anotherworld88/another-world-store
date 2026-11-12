@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -193,11 +194,127 @@ body.light-mode .hero{
  align-items:center;
  text-align:center;
  background:var(--card);
+ cursor:pointer;
+ color:var(--text);
+ font-family:inherit;
+ width:100%;
+ transition:transform .25s,border-color .25s,background .25s;
+}
+
+.product-slot:hover{
+ transform:translateY(-5px);
+ border-color:var(--button);
+ background:var(--section);
+}
+
+.product-slot:focus-visible{
+ outline:2px solid var(--button);
+ outline-offset:4px;
 }
 
 .plus{font-size:34px;color:var(--muted)}
 .product-slot h3{font-family:Georgia,serif;font-size:17px}
 .product-slot p{color:var(--muted);font-size:12px;line-height:1.7}
+
+/* PRODUCT DETAILS WINDOW */
+
+.product-modal{
+ position:fixed;
+ inset:0;
+ z-index:100;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+ background:rgba(0,0,0,.82);
+ overflow-y:auto;
+}
+
+.product-modal.active{display:flex}
+
+.modal-content{
+ position:relative;
+ width:min(440px,100%);
+ padding:35px 24px;
+ background:var(--card);
+ border:1px solid var(--border);
+ text-align:center;
+ animation:modalShow .25s ease;
+}
+
+@keyframes modalShow{
+ from{opacity:0;transform:translateY(15px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.modal-close{
+ position:absolute;
+ top:10px;
+ right:14px;
+ width:36px;
+ height:36px;
+ border:1px solid var(--border);
+ background:transparent;
+ color:var(--text);
+ font-size:23px;
+ cursor:pointer;
+}
+
+body[dir="rtl"] .modal-close{
+ right:auto;
+ left:14px;
+}
+
+.modal-image{
+ min-height:180px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ background:var(--section);
+ border:1px dashed var(--border);
+ margin-bottom:22px;
+}
+
+.modal-image span{
+ font-size:48px;
+ color:var(--muted);
+}
+
+.modal-image p{
+ color:var(--muted);
+ font-size:12px;
+}
+
+.modal-content h2{
+ font-family:Georgia,serif;
+ font-size:27px;
+ margin:15px 0;
+}
+
+.modal-description{
+ color:var(--muted);
+ line-height:1.8;
+ font-size:13px;
+}
+
+.modal-price{
+ font-family:Georgia,serif;
+ font-size:20px;
+ margin:20px 0;
+}
+
+.modal-whatsapp{
+ display:inline-block;
+ padding:14px 22px;
+ background:var(--button);
+ color:var(--button-text);
+ text-decoration:none;
+ font-size:11px;
+ font-weight:bold;
+ letter-spacing:1px;
+ margin-top:10px;
+}
 
 /* GUESS THE BRAND */
 
@@ -397,20 +514,78 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
   <p class="section-intro" data-en="New pieces will appear here. Each product space is ready for its photo, name and price." data-ar="ستظهر القطع الجديدة هنا. كل مكان جاهز لصورة المنتج واسمه وسعره.">New pieces will appear here. Each product space is ready for its photo, name and price.</p>
 
   <div class="product-grid">
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
 
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <button class="product-slot" type="button" data-product="1">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p>
+   </button>
 
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <button class="product-slot" type="button" data-product="2">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p>
+   </button>
 
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <button class="product-slot" type="button" data-product="3">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p>
+   </button>
 
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <button class="product-slot" type="button" data-product="4">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>السعر: سيضاف لاحقاً</p>
+   </button>
 
-   <article class="product-slot"><span class="plus">+</span><h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3><p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p></article>
+   <button class="product-slot" type="button" data-product="5">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p>
+   </button>
+
+   <button class="product-slot" type="button" data-product="6">
+    <span class="plus">+</span>
+    <h3 data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h3>
+    <p data-en="Product photo coming soon<br>Price: to be added" data-ar="صورة المنتج قريباً<br>السعر: سيضاف لاحقاً">Product photo coming soon<br>Price: to be added</p>
+   </button>
+
   </div>
  </div>
 </section>
+
+<!-- PRODUCT DETAILS WINDOW -->
+
+<div class="product-modal" id="productModal" aria-hidden="true">
+ <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+  <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+
+  <div class="modal-image">
+   <span>+</span>
+   <p data-en="PRODUCT PHOTO COMING SOON" data-ar="صورة المنتج قريباً">PRODUCT PHOTO COMING SOON</p>
+  </div>
+
+  <p class="eyebrow" data-en="ANOTHER WORLD COLLECTION" data-ar="مجموعة عالم آخر">ANOTHER WORLD COLLECTION</p>
+
+  <h2 id="modalTitle" data-en="YOUR NEXT PIECE" data-ar="قطعتك القادمة">YOUR NEXT PIECE</h2>
+
+  <p class="modal-description"
+   data-en="This product will be available soon. Stay tuned for its photo and full details."
+   data-ar="هذا المنتج سيكون متوفراً قريباً. ترقبوا صورته وجميع تفاصيله.">
+   This product will be available soon. Stay tuned for its photo and full details.
+  </p>
+
+  <div class="modal-price" data-en="PRICE: COMING SOON" data-ar="السعر: قريباً">PRICE: COMING SOON</div>
+
+  <a class="modal-whatsapp" href="https://wa.me/213791237069"
+   target="_blank" rel="noopener"
+   data-en="ASK ABOUT THIS PIECE"
+   data-ar="استفسر عن هذه القطعة">ASK ABOUT THIS PIECE</a>
+
+ </div>
+</div>
 
 <section class="section contact" id="contact">
  <h2 class="section-heading" data-en="LET'S TALK" data-ar="لنتحدث">LET'S TALK</h2>
@@ -429,6 +604,9 @@ body[dir="rtl"] .game-title{letter-spacing:1px}
 <script>
 const languageBtn = document.getElementById("languageBtn");
 const themeBtn = document.getElementById("themeBtn");
+
+const productModal = document.getElementById("productModal");
+const modalClose = document.getElementById("modalClose");
 
 let currentLanguage = localStorage.getItem("aw-language") || "en";
 let isLight = localStorage.getItem("aw-theme") === "light";
@@ -466,6 +644,39 @@ function updateTheme(){
  localStorage.setItem("aw-theme",isLight ? "light" : "dark");
  updateThemeButton();
 }
+
+/* OPEN PRODUCT DETAILS */
+
+document.querySelectorAll(".product-slot").forEach(function(slot){
+ slot.addEventListener("click",function(){
+  productModal.classList.add("active");
+  productModal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  modalClose.focus();
+ });
+});
+
+/* CLOSE PRODUCT DETAILS */
+
+function closeProductModal(){
+ productModal.classList.remove("active");
+ productModal.setAttribute("aria-hidden","true");
+ document.body.style.overflow="";
+}
+
+modalClose.addEventListener("click",closeProductModal);
+
+productModal.addEventListener("click",function(event){
+ if(event.target === productModal){
+  closeProductModal();
+ }
+});
+
+document.addEventListener("keydown",function(event){
+ if(event.key === "Escape" && productModal.classList.contains("active")){
+  closeProductModal();
+ }
+});
 
 languageBtn.addEventListener("click",function(){
  currentLanguage = currentLanguage === "en" ? "ar" : "en";
