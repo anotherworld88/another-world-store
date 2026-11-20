@@ -101,7 +101,7 @@ footer{text-align:center;color:#cdb99a;font-size:11px;padding:30px}
 <div class="panel" id="productImageManager">
 
   <h2>PRODUCT MANAGEMENT</h2>
-  <p class="muted">Manage up to six products with five images each.</p>
+  <p class="muted">Manage your products with five images each.</p>
 
   <form id="productForm">
 
@@ -178,7 +178,7 @@ footer{text-align:center;color:#cdb99a;font-size:11px;padding:30px}
 
   <hr>
 
-  <h3>YOUR PRODUCTS (MAXIMUM 6)</h3>
+  <h3>YOUR PRODUCTS</h3>
   <div id="productsAdminList"></div>
 
 </div>
@@ -934,9 +934,8 @@ $("refreshButton").addEventListener("click",loadDashboard);
 /* =====================================
    PRODUCT MANAGEMENT
 ===================================== */
-
-const PRODUCT_BUCKET = "product-images";
-const MAX_PRODUCTS = 6;
+ const PRODUCT_BUCKET = "product-images";
+const MAX_PRODUCTS = Number.MAX_SAFE_INTEGER;
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 
 let adminProducts = [];
@@ -1094,8 +1093,7 @@ $("resetProductForm").addEventListener(
 );
 
 /* LOAD PRODUCTS */
-
-async function loadProducts() {
+ async function loadProducts() {
   const list = $("productsAdminList");
 
   list.replaceChildren();
@@ -1187,7 +1185,7 @@ async function loadProducts() {
     const count = adminProducts.length;
 
     $("productImageMessage").textContent =
-      count + " / " + MAX_PRODUCTS + " products.";
+      count + " products.";
 
     if (count === 0) {
       list.textContent = "No products created yet.";
@@ -1270,7 +1268,7 @@ async function loadProducts() {
     }
 
     if (!id && adminProducts.length >= MAX_PRODUCTS) {
-      throw new Error("Maximum six products allowed.");
+      throw new Error("Unable to add another product. Please refresh and try again.");
     }
 
     const name = $("productName").value.trim();
@@ -1386,8 +1384,7 @@ async function loadProducts() {
 });
 
 /* DELETE PRODUCT */
-
-async function deleteProduct(id) {
+ async function deleteProduct(id) {
   if (productBusy) return;
 
   const product = adminProducts.find(item => item.id === id);
@@ -1448,5 +1445,3 @@ checkAdmin();
 </script>
 </body>
 </html>
-
-   
